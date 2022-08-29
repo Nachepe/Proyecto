@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row>
+    <ion-col  color="Light" size="3">
+      
+    </ion-col>
+    <ion-col size="6">
+      <ion-card>
+        <div align="center"> 
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/User_icon-cp.svg/1200px-User_icon-cp.svg.png" style="width: 200px;"/>
+      </div>
+        <ion-card-header>
+          <ion-card-subtitle>INGRESAR</ion-card-subtitle>
+          <ion-card-title>Bienvenido</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          
+          <ion-item>
+            <ion-label>Usuario :</ion-label>
+            <ion-input type="text" placeholder="Ingrese usuario" [(ngModel)]="user"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Contraseña :</ion-label>
+            <ion-input type="password" placeholder="Ingrese contraseña" [(ngModel)]="password"></ion-input>
+          </ion-item>
+          <ion-button color="success" (click)="login()">Ingresar</ion-button>
+        </ion-card-content>
+      </ion-card>
+
+
+    </ion-col>
+    <ion-col size="3">
+      
+    </ion-col>
+  </ion-row>
+  
+  <ion-button routerLink='/registrar'> Registrarse</ion-button>
+
+</ion-content>
