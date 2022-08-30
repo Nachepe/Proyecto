@@ -1,11 +1,20 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>registrar</ion-title>
+    <ion-button slot="end" routerLink="/login">
+      <ion-icon name="play-back-outline"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
   <form [formGroup]="alumno" (ngSubmit)="registrar()">
+
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="email" placeholder="Ingrese su email" formControlName="email"></ion-input>
+    </ion-item>
     <ion-item>
       <ion-label position="stacked">Rut</ion-label>
       <ion-input type="text" placeholder="Ingrese rut" formControlName="rut"></ion-input>
@@ -37,4 +46,5 @@
   <ion-list *ngFor="let usuario of usuarios">
     <p>{{usuario.rut}} - {{usuario.nom_completo}} - {{usuario.fecha_nac}} - {{usuario.semestre}}</p>
   </ion-list> -->
+
 </ion-content>

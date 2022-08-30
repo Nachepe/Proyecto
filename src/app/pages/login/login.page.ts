@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  //vamos a crear las variables necesarias:
+  mail: string;
+  user: string;
+  password: string;
+
+  constructor(private toastController: ToastController, private router: Router, 
+    private usuarioService: UsuarioService) { }
 
   ngOnInit() {
   }
+
+  //método para ingresar a home:
+  login(){
+    var usuarioLogin = this.usuarioService.validarEmailPassword(this.mail, this.password);
+    console.log(usuarioLogin);
+    //validar que al ingresar admin admin en el formulario, me diga hola:
+    if (usuarioLogin != undefined) {
+      if (usuarioLogin.tipo_usuario == 'administrador'){
+        this.router.navigate(['/home']);
+      }else{
+        this.router.navigate(['/alumno']);
+      }
+      
+    }else{
+      this.tostadaError();
+    }
+  }
+
+  //toast
+  async tostadaError() {
+    const toast = await this.toastController.create({
+      message: 'Usuario o contraseña incorrectos!!!',
+      duration: 3000
+    });
+    toast.present();
+  }
+
+
+
 
 }
