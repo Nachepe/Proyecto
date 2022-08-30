@@ -8,10 +8,10 @@
 
 <ion-content>
   
-
-  <ion-card class="login">
-    <ion-icon name="people-sharp"></ion-icon>
-
+  <ion-card class="login" >
+    <div style="margin-top: 20px;">
+     <img class="fotis" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/User_icon-cp.svg/1200px-User_icon-cp.svg.png"  alt="">
+    </div>
     <ion-card-header>
       <ion-card-subtitle>INGRESAR</ion-card-subtitle>
       <ion-card-title>CURSITO POWER UP</ion-card-title>
@@ -19,11 +19,11 @@
     <ion-card-content>
       <ion-card>
         <ion-item>
-          <ion-label>Usuario</ion-label>
-          <ion-input  type="text" placeholder="Ingrese usuario" [(ngModel)]="mail"></ion-input>
+          <ion-label>Usuario: </ion-label>
+          <ion-input  type="text" placeholder="Ingrese email" [(ngModel)]="mail"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label>Contraseña</ion-label>
+          <ion-label>Contraseña: </ion-label>
           <ion-input type="password" placeholder="Ingrese contraseña" [(ngModel)]="password"></ion-input>
         </ion-item>
         
@@ -34,14 +34,8 @@
   </ion-card>
 
 
-  <div class="login">
-    <a routerLink='/registrar'>Ir a registrar...</a>
+  <div class="login" style="margin-top: 10px;">
+    <a routerLink='/registrar'>¿No tienes cuenta? Registrate!</a>
   </div>
   
-
-
-
-
-
-
 </ion-content>
