@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { MenuController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
@@ -16,7 +16,7 @@ export class LoginPage implements OnInit {
   password: string;
 
   constructor(private toastController: ToastController, private router: Router, 
-    private usuarioService: UsuarioService) { }
+    private usuarioService: UsuarioService,private menuCrl:MenuController) { }
 
   ngOnInit() {
   }
@@ -37,7 +37,10 @@ export class LoginPage implements OnInit {
       this.tostadaError();
     }
   }
+  toggleMenu(){
 
+    this.menuCrl.toggle();
+  }
   //toast
   async tostadaError() {
     const toast = await this.toastController.create({
