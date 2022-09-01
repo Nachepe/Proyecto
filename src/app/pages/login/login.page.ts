@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
     //validar que al ingresar admin admin en el formulario, me diga hola:
     if (usuarioLogin != undefined) {
       if (usuarioLogin.tipo_usuario == 'administrador'){
-        this.router.navigate(['/home']);
+        this.router.navigate(['/docente']);
       }else{
         this.router.navigate(['/alumno']);
       }
@@ -49,6 +49,8 @@ export class LoginPage implements OnInit {
     });
     toast.present();
   }
+
+  
 
 
 

@@ -2,6 +2,12 @@
 
 <ion-content [fullscreen]="true">
 
+  
+  <ion-button  routerLink="/admin" >Lista</ion-button>
+  <ion-button  >Perfil</ion-button>
+  
+
+
   <form [formGroup]="alumno" (ngSubmit)="registrar()">
 
     <ion-item>
@@ -13,9 +19,34 @@
       <ion-input type="text" placeholder="Ingrese rut" formControlName="rut"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Nombre completo</ion-label>
-      <ion-input type="text" placeholder="Ingrese nombre" formControlName="nom_completo"></ion-input>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input type="text" placeholder="Ingrese nombre" formControlName="nom"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Apellido</ion-label>
+      <ion-input type="text" placeholder="Ingrese apellido" formControlName="ape"></ion-input>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label position="stacked">Tipo Usuario</ion-label>
+      <ion-input type="text" placeholder="Ingrese tipo" formControlName="tipo_usuario"></ion-input>
+    </ion-item> -->
+
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked" >Tipo Usuario</ion-label>
+        <ion-select placeholder="Selecciona" formControlName="tipo_usuario">
+          <ion-select-option value="Alumno">Alumno</ion-select-option>
+          <ion-select-option value="Docente">Docente</ion-select-option>
+          <ion-select-option value="Administrador">Administrador</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <!-- <ion-item>
+      <ion-label position="stacked">Tipo Usuario</ion-label>
+      <ion-radio slot="start" value="biff" ></ion-radio>
+    </ion-item> -->
+
     <ion-item>
       <ion-label position="stacked">Fecha nacimiento</ion-label>
       <ion-input type="date" placeholder="Ingrese fecha nacimiento" formControlName="fecha_nac"></ion-input>
@@ -28,6 +59,9 @@
       <ion-label position="stacked">Contraseña</ion-label>
       <ion-input type="password" placeholder="Ingrese contraseña" formControlName="password"></ion-input>
     </ion-item>
+    <ion-list>
+      
+    </ion-list>
     <ion-item>
       <ion-label position="stacked">Repita Contraseña</ion-label>
       <ion-input type="password" placeholder="Ingrese nuevamente contraseña" [(ngModel)]="verificar_password"
@@ -40,7 +74,7 @@
 
   <h1>LISTA DE USUARIOS</h1>
   <ion-list *ngFor="let usuario of usuarios">
-    <p>{{usuario.rut}} - {{usuario.nom_completo}} - {{usuario.fecha_nac}} - {{usuario.semestre}} -- {{usuario.email}}</p>
+    <p>{{usuario.rut}} - {{usuario.nom}} -- {{usuario.ape}} -- {{usuario.fecha_nac}} - {{usuario.semestre}} -- {{usuario.email}} -- {{usuario.tipo_usuario}}</p>
     <ion-button color="warning" (click)="buscar(usuario.rut)">Buscar</ion-button>
     <ion-button color="danger" (click)="eliminar(usuario.rut)">Eliminar</ion-button>
   </ion-list>

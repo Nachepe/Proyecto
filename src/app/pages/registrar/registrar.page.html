@@ -1,7 +1,7 @@
 <app-header titulo="Registrar"></app-header>
 
 <ion-content>
-  <img class="foto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/New_user_icon-01.svg/1200px-New_user_icon-01.svg.png" alt="">
+  <img class="foto" src="../../../assets/img/icons8-registration-100.png" alt="">
   <form [formGroup]="alumno" (ngSubmit)="registrar()">
 
     <ion-item>
@@ -13,8 +13,12 @@
       <ion-input type="text" placeholder="Ingrese rut" formControlName="rut"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Nombre completo</ion-label>
-      <ion-input type="text" placeholder="Ingrese nombre" formControlName="nom_completo"></ion-input>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input type="text" placeholder="Ingrese nombre" formControlName="nom"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Apellido</ion-label>
+      <ion-input type="text" placeholder="Ingrese apellido" formControlName="ape"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Fecha nacimiento</ion-label>

@@ -9,20 +9,22 @@ export class UsuarioService {
   usuarios: any[] = [
     {
       rut: '11.111.111-1',
-      nom_completo: 'Satan',
+      nom: 'Satan',
+      ape: 'Lucifer',
       fecha_nac: '1990-03-24',
       semestre: 1,
-      password: 'satan123',
-      tipo_usuario: 'administrador',
-      email: 'admin@admin.cl'
+      password: 'alan12',
+      tipo_usuario: 'Administrador',
+      email: 'admin@profesor.duoc.cl'
     },
     {
       rut: '11.111.111-2',
-      nom_completo: 'Satan',
+      nom: 'Satan',
+      ape: 'Gracias',
       fecha_nac: '1990-03-24',
       semestre: 1,
-      password: 'satan123',
-      tipo_usuario: 'alumno',
+      password: 'asd123',
+      tipo_usuario: 'Alumno',
       email: 'alumno@duoc.cl'
     }
   ];
@@ -73,4 +75,7 @@ export class UsuarioService {
     return this.usuarios.find(u => u.email == email && u.password == pass);
   }
 
+  validarEmail(email){
+    return this.usuarios.find(u => u.email == email);
+  }
 }
