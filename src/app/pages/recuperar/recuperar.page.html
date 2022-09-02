@@ -1,23 +1,23 @@
 <app-header titulo="Recuperar"></app-header>
-<hr>
+
 <ion-content>
-    <ion-card class="recuperar" >
-        <div >
+  <div class="fondo">
+    <ion-card class="recu">
          <img class="fotis" src="../../../assets/img/icons8-password-reset-100.png"  alt="">
-        </div>
+        
         <ion-card-header>
           <ion-card-title>Recuperar</ion-card-title>
           
         </ion-card-header>
-        <ion-card-content>
-          <ion-card>
+          <div class="recu">
             <ion-item>
               <ion-label>Email: </ion-label>
               <ion-input  type="text" placeholder="Ingrese email" [(ngModel)]="email"></ion-input>
             </ion-item>
-            
-          </ion-card>
+          </div>
+          
           <ion-button (click)="recuperar()">Recuperar</ion-button>
-        </ion-card-content>
+        
       </ion-card>
+    </div>
 </ion-content>

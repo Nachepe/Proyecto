@@ -1,15 +1,17 @@
-<app-header titulo="Docente"></app-header>
+<app-header titulo="Alumno"></app-header>
 
-    <ion-content [fullscreen]="true">
+<ion-content>
+  <div class="fondo">
           <ion-card>
             <ion-card-header >
-              <ion-card-title>PERFIL Docente Duoc UC</ion-card-title>
+              <ion-card-title>PERFIL Duoc UC</ion-card-title>
               <hr>
+              <img  class="fotis" src="../../../assets/img/icons8-cat-profile-100.png" />
               <ion-item>
                 <hr>
                 <h3 slot="start" >Alan Gajardo</h3>
                 
-                  <img  src="../../../assets/img/icons8-cat-profile-100.png" />
+                  
                 
               </ion-item>
           </ion-card-header>
@@ -17,23 +19,23 @@
             <ion-list-header > DATOS PERSONALES </ion-list-header>
   
             <ion-item>
-                <ion-input  > Nombre Completo: </ion-input>
+                <ion-input readonly >Nombre: Alan Gajardo</ion-input>
             </ion-item>
             <hr>
             <ion-item>
-              <ion-input > Contacto: </ion-input>
+              <ion-input readonly> Contacto: 987654321 </ion-input>
             </ion-item>
             <hr>
             <ion-item>
-              <ion-input  > Rut: </ion-input>
+              <ion-input readonly > Rut:11.111.111-1 </ion-input>
             </ion-item>
             <hr>
             <ion-item>
-              <ion-input > FechaNacimiento: </ion-input>
+              <ion-input readonly> Fecha de Nacimiento:01/01/0001 </ion-input>
             </ion-item>
             <hr>
             <ion-item>
-              <ion-input  > Semestre: </ion-input>
+              <ion-input readonly  > Semestre: 2 </ion-input>
             </ion-item>
             <hr>
             <ion-item>
@@ -42,4 +44,5 @@
             <hr>
           </ion-list>
           </ion-card>
-        </ion-content>
+        </div>
+      </ion-content>

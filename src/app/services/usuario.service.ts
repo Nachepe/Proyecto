@@ -26,6 +26,16 @@ export class UsuarioService {
       password: 'asd123',
       tipo_usuario: 'Alumno',
       email: 'alumno@duoc.cl'
+    },
+    {
+      rut: '11.111.111-3',
+      nom: 'Alan',
+      ape: 'Gajardo',
+      fecha_nac: '1990-03-24',
+      semestre: 1,
+      password: 'asd123',
+      tipo_usuario: 'Docente',
+      email: 'profesor@profesor.duoc.cl'
     }
   ];
 
