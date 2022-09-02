@@ -12,7 +12,7 @@
 }
 
 .fondo{
-    height: 100vh;
+    height: 95vh;
     background: rgb(2,0,36);
     background: linear-gradient(138deg, rgba(2,0,36,1) 0%, rgba(11,102,110,0.5256477591036415) 35%, rgba(0,212,255,1) 100%);
     background-size: cover;
@@ -35,8 +35,8 @@ ion-card {
 
     border-radius: 25px;
     margin: 0 auto;
-    top: 5vh;
-    height: 80vh;
+    
+    height: 90vh;
     width: 80vh;
     display: flex;
     flex-direction: column; 
@@ -79,7 +79,7 @@ ion-card {
         font-family:baloo2;
     }
     ion-button{
-        margin-top: 5vh;
+       
         
        font-family: baloo2;
        font-weight: bolder;
@@ -94,25 +94,25 @@ ion-card {
 
 @media (max-width: 400px) {
     .fondo {
-        ion-card {
-            width: 95vw;
-            height: 150vh;
-        }
+        height: 130%;
+        background-color: #8BC6EC;
+        background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+        background-size: cover;
+        text-align: center;
     }
     .fotis{
-        width: 50px;
+        width: 150px;
     }
+
     ion-card {
         font-family: baloo2 !important;
         background-color: #8BC6EC;
         background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
-        
+        font-size: larger;
     
-        border-radius: 25px;
-        margin: 0 auto;
-        top: 5vh;
-        height: 90vh;
-        width: 80vh;
+        top: 0vh;
+        height: 100%;
+        width: 100%;
         display: flex;
         flex-direction: column; 
         align-items: center;
