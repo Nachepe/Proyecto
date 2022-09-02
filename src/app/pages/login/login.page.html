@@ -12,17 +12,22 @@
  -->
 
 <ion-content >
+  <div class="fondo">
+
   
   <ion-card class="login" >
-    <div style="margin-top: 20px;">
+    <div >
      <img class="fotis" src="../../../assets/img/icons8-user-100.png"  alt="">
     </div>
     <ion-card-header>
       <ion-card-subtitle>INGRESAR</ion-card-subtitle>
-      <ion-card-title>CURSITO POWER UP</ion-card-title>
+      <ion-card-title>Asistencia de alumnos Duoc</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-card>
+      
+
+      <div class="log">
+        
         <ion-item>
           <ion-label>Usuario: </ion-label>
           <ion-input  type="text" placeholder="Ingrese email" [(ngModel)]="mail"></ion-input>
@@ -31,18 +36,22 @@
           <ion-label>Contraseña: </ion-label>
           <ion-input type="password" placeholder="Ingrese contraseña" [(ngModel)]="password"></ion-input>
         </ion-item>
-        
+      </div>
 
-      </ion-card>
-      <ion-button (click)="login()">INGRESAR</ion-button>
-    </ion-card-content>
-  </ion-card>
-
-
-  <div class="login" style="margin-top: 10px;">
+      <div class="botonsito">
+        <ion-button color="corteiphone" (click)="login()">INGRESAR</ion-button><br>
+      </div>
+      
+    <div class="linksextras">
     <a routerLink='/registrar'>¿No tienes cuenta? Registrate!</a>
     <hr>
     <a routerLink='/recuperar'>Recuperar Contraseña</a>
+    </div>
+  </ion-card-content>
+  </ion-card>
+
+
+    
   </div>
-  
+
 </ion-content>
