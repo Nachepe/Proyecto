@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MenuController } from '@ionic/angular';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -26,7 +27,7 @@ export class AdminPage implements OnInit {
   usuarios: any[] = [];
   verificar_password: string;
 
-  constructor(private usuarioService: UsuarioService) {}
+  constructor(private usuarioService: UsuarioService, private menuCtrl : MenuController) {}
 
   ngOnInit() {
     this.usuarios = this.usuarioService.obtenerUsuarios();
@@ -58,6 +59,7 @@ export class AdminPage implements OnInit {
     var alumnoEncontrado = this.usuarioService.obtenerUsuario(rutBuscar);
     this.alumno.setValue(alumnoEncontrado);
     this.verificar_password = alumnoEncontrado.password;
+    this.toggleMenu();
   }
 
   modificar(){
@@ -70,6 +72,8 @@ export class AdminPage implements OnInit {
     this.alumno.reset();
     this.verificar_password = '';
   }
-
+  toggleMenu(){
+    this.menuCtrl.toggle('end');
+  }
 }
 

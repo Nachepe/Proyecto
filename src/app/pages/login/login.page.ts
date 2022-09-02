@@ -27,7 +27,9 @@ export class LoginPage implements OnInit {
     console.log(usuarioLogin);
     //validar que al ingresar admin admin en el formulario, me diga hola:
     if (usuarioLogin != undefined) {
-      if (usuarioLogin.tipo_usuario == 'administrador'){
+      if (usuarioLogin.tipo_usuario == 'Administrador'){
+        this.router.navigate(['/home']);
+      }else if(usuarioLogin.tipo_usuario == 'Docente'){
         this.router.navigate(['/docente']);
       }else{
         this.router.navigate(['/alumno']);

@@ -13,7 +13,7 @@ export class UsuarioService {
       ape: 'Lucifer',
       fecha_nac: '1990-03-24',
       semestre: 1,
-      password: 'alan12',
+      password: 'asd123',
       tipo_usuario: 'Administrador',
       email: 'admin@profesor.duoc.cl'
     },
