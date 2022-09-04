@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { RutService } from 'rut-chileno';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registrar',
@@ -27,8 +28,12 @@ export class RegistrarPage implements OnInit {
   //VAMOS A CREAR UNA VARIABLE PARA OBTENER LA LISTA DE USUARIOS DEL SERVICIO DE USUARIOS:
   //usuarios: any[] = [];
   verificar_password: string;
+  
 
-  constructor(private usuarioService: UsuarioService, private router: Router,private rutService: RutService) { }
+  constructor(private usuarioService: UsuarioService,
+                 private router: Router,
+                private rutService: RutService,
+                private toast :ToastController) { }
 
   ngOnInit() {
     //this.usuarios = this.usuarioService.obtenerUsuarios();
@@ -37,14 +42,21 @@ export class RegistrarPage implements OnInit {
   //método del formulario
   registrar(){
     if (this.alumno.controls.password.value != this.verificar_password) {
-      alert('CONTRASEÑAS NO COINCIDEN!');
+     this.tostada('¡Contraseñas no coinciden!')
       return;
     }
     this.usuarioService.agregarUsuario(this.alumno.value);
-    alert('Usuario REGISTRADO!');
+    this.tostada('Usuario registrado correctamente')
     this.router.navigate(['/login']);
     //this.alumno.reset();
     //this.verificar_password = '';
   }
-
+  async tostada(msg:string) {
+    const toast = await this.toast.create({
+      message: msg,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
 }

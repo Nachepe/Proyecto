@@ -3,20 +3,24 @@
 <ion-content >
 <ion-menu side="end" contentId="mainxd" class="extendido">
   <ion-header>
-    <ion-toolbar color="danger">
-      <ion-title>End Menu</ion-title>
+    <ion-toolbar color="duoc">
+      <ion-buttons slot="end">
+        <ion-button (click)="toggleMenu()"  > <img src="../../../assets/img/icons8-multiply-100.png" alt=""></ion-button>
+      </ion-buttons>
+      <ion-title>Datos</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
      <form [formGroup]="alumno" (ngSubmit)="registrar()">
 
+     
     <ion-item>
       <ion-label position="stacked">Email</ion-label>
       <ion-input type="email" placeholder="Ingrese su email" formControlName="email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Rut</ion-label>
-      <ion-input type="text" placeholder="Ingrese rut" formControlName="rut"></ion-input>
+      <ion-input type="text" maxlength="10" placeholder="Ingrese rut" formControlName="rut"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Nombre</ion-label>
@@ -42,7 +46,7 @@
 
     <ion-item>
       <ion-label position="stacked">Fecha nacimiento</ion-label>
-      <ion-input type="date" placeholder="Ingrese fecha nacimiento" formControlName="fecha_nac"></ion-input>
+      <ion-input type="date"   max="2004-09-06" placeholder="Ingrese fecha nacimiento" formControlName="fecha_nac"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Semestre</ion-label>
@@ -60,9 +64,15 @@
       <ion-input type="password" placeholder="Ingrese nuevamente contraseña" [(ngModel)]="verificar_password"
         [ngModelOptions]="{standalone: 'true'}"></ion-input>
     </ion-item>
-    <ion-button type="submit" [disabled]="!alumno.valid">REGISTRAR</ion-button>
-    <ion-button (click)="modificar()" [disabled]="!alumno.valid">Modificar</ion-button>
-    <ion-button (click)="limpiar()"  > Limpiar</ion-button>
+    <ion-buttons>
+
+    
+    <ion-button type="submit" [disabled]="!alumno.valid">Registrar <img src="../../../assets/img/icons8-registration-100.png" alt="">
+    </ion-button>
+    <ion-button (click)="modificar()" [disabled]="!alumno.valid">Modificar <img src="../../../assets/img/icons8-edit-file-100.png" alt=""></ion-button>
+    
+    <ion-button (click)="limpiar()"  > Limpiar <img src="../../../assets/img/icons8-delete-100.png" alt=""></ion-button>
+  </ion-buttons>
   </form>
 
   </ion-content>
@@ -73,15 +83,27 @@
 
 
 
+  <h1>Lista de usuarios</h1>
+  <ion-buttons>
+  <ion-button (click)="agregar()">Agregar<img class="imagenbot" src="../../../assets/img/icons8-plus-math-100.png"></ion-button>
+</ion-buttons>
+  <ion-list inset="true" *ngFor="let usuario of usuarios">
 
 
-  <h1>LISTA DE USUARIOS</h1>
-  <ion-list *ngFor="let usuario of usuarios">
-    <p>{{usuario.rut}} - {{usuario.nom}} -- {{usuario.ape}} -- {{usuario.fecha_nac}} - {{usuario.semestre}} -- {{usuario.email}} -- {{usuario.tipo_usuario}}</p>
-    <ion-button color="warning" (click)="buscar(usuario.rut)">Buscar</ion-button>
-    <ion-button color="danger" (click)="eliminar(usuario.rut)">Esliminar</ion-button>
+
+
+    <div class="listavista">
+
+    
+    <p>{{usuario.rut}} <br>{{usuario.nom}} {{usuario.ape}} </p>
+   <ion-buttons>
+    <ion-button  color="warning" (click)="buscar(usuario.rut)">Buscar<img class="imagenbot" src="../../../assets/img/icons8-find-user-male-100.png"></ion-button>
+   
+    <ion-button color="danger" (click)="borra(usuario.rut)">Eliminar <img class="imagenbot" src="../../../assets/img/icons8-delete-100.png"></ion-button>
+  </ion-buttons> 
+  </div>
   </ion-list>
-  
+
 
 
 
