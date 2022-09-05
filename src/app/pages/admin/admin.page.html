@@ -1,6 +1,8 @@
 <app-header titulo="Admin"></app-header>
 
 <ion-content >
+  <div class="fondo">
+    
 <ion-menu side="end" contentId="mainxd" class="extendido">
   <ion-header>
     <ion-toolbar color="duoc">
@@ -64,6 +66,7 @@
       <ion-input type="password" placeholder="Ingrese nuevamente contraseña" [(ngModel)]="verificar_password"
         [ngModelOptions]="{standalone: 'true'}"></ion-input>
     </ion-item>
+    
     <ion-buttons>
 
     
@@ -77,37 +80,38 @@
 
   </ion-content>
 </ion-menu>
+
   
   <ion-router-outlet id="mainxd"></ion-router-outlet>
 
-
-
-
-  <h1>Lista de usuarios</h1>
+  <ion-card>
+  <h1  >Lista de usuarios</h1>
   <ion-buttons>
   <ion-button (click)="agregar()">Agregar<img class="imagenbot" src="../../../assets/img/icons8-plus-math-100.png"></ion-button>
 </ion-buttons>
-  <ion-list inset="true" *ngFor="let usuario of usuarios">
 
-
-
-
-    <div class="listavista">
+  <ion-list color="dark" lines="none" *ngFor="let usuario of usuarios">
+    <!-- <div class="listavista"> -->
 
     
-    <p>{{usuario.rut}} <br>{{usuario.nom}} {{usuario.ape}} </p>
+    <p> {{usuario.rut}} <br> {{usuario.nom}} {{usuario.ape}} </p>
    <ion-buttons>
+    
     <ion-button  color="warning" (click)="buscar(usuario.rut)">Buscar<img class="imagenbot" src="../../../assets/img/icons8-find-user-male-100.png"></ion-button>
-   
     <ion-button color="danger" (click)="borra(usuario.rut)">Eliminar <img class="imagenbot" src="../../../assets/img/icons8-delete-100.png"></ion-button>
-  </ion-buttons> 
-  </div>
+  </ion-buttons>
+
+ <!--  </div> -->
   </ion-list>
+    
+  
+  </ion-card>
 
 
 
 
-
-
+</div>
 
 </ion-content>
+
+

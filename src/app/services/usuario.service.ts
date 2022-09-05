@@ -13,9 +13,9 @@ export class UsuarioService {
       ape: 'Lucifer',
       fecha_nac: '1990-03-24',
       semestre: 1,
-      password: 'asd123',
+      password: 'admin123',
       tipo_usuario: 'Administrador',
-      email: 'admin@profesor.duoc.cl'
+      email: 'admin@admin.cl'
     },
     {
       rut: '11.111.111-2',

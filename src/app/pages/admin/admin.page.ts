@@ -74,6 +74,8 @@ export class AdminPage implements OnInit {
   modificar(){
     this.usuarioService.modificarUsuario(this.alumno.value);
     this.limpiar();
+    this.tostada('Usuario Modificado Correctamente');
+    this.toggleMenu();
     //console.log(this.alumno.value)
   }
 

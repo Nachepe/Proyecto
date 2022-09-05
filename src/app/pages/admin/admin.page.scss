@@ -1,15 +1,17 @@
+
+
 .extendido{
     --width: 900px
 }
 
-
+/* 
 .log{
     background-color: antiquewhite;
     border-radius: 15px ;
     border: 2px solid;
     border-color: darkslategrey;
     padding: 3px 10px 10px 10px;
-}
+} */
 
 .fotis{
     width: 150px;
@@ -28,18 +30,13 @@
     src: url('../../../assets/fonts/Baloo2-VariableFont_wght.ttf');
   }
 
-.linksextras{
-    margin-top: 6vh;
-}
+
 ion-card {
     font-family: baloo2 !important;
     background-color: #1a1a1a;
-
-    
-
     border-radius: 25px;
     margin: 0 auto;
-    top: 5vh;
+    top: 5vh; 
     height: 105vh;
     width: 80vh;
     display: flex;
@@ -66,7 +63,7 @@ ion-card {
         }
     }
 
-    ion-item {
+      ion-item {
         --background: none;
 
         ion-label {
@@ -78,7 +75,7 @@ ion-card {
             font-weight: bold;
             color: #FFB800;
         }
-    }
+    }  
 
     a {
         text-decoration: none;
@@ -101,6 +98,20 @@ ion-card {
 .imagenbot{
     width: 30px;
 }
+
+.listavista{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #1a1a1a !important;
+    
+}
+
+.coloritem{
+    --ion-item-background: #1a1a1a;
+}
+
+
 
 @media (max-width: 400px) {
     .fondo {
@@ -191,5 +202,7 @@ ion-card {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        background-color: #1a1a1a;
     }
+
 }
