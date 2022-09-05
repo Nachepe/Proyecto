@@ -1,0 +1,55 @@
+
+
+
+
+
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+ -->
+
+<ion-content >
+  <div class="fondo">
+
+  
+  <ion-card class="login" >
+    <div >
+     <img class="fotis" src="../../../assets/img/icons8-user-100.png"  alt="">
+    </div>
+    <ion-card-header>
+      <ion-card-subtitle>INGRESAR</ion-card-subtitle>
+      <ion-card-title color="duoc" >Asistencia de alumnos Duoc</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      
+
+      <div class="log">
+        
+        <ion-item>
+          <ion-label>Usuario: </ion-label>
+          <ion-input  type="text" placeholder="Ingrese email" [(ngModel)]="mail"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Contraseña: </ion-label>
+          <ion-input type="password" placeholder="Ingrese contraseña" [(ngModel)]="password"></ion-input>
+        </ion-item>
+      </div>
+
+      <div class="botonsito">
+        <ion-button color="corteiphone" (click)="login()">INGRESAR</ion-button><br>
+      </div>
+      
+    <div class="linksextras">
+    <a routerLink='/registrar'>¿No tienes cuenta? Registrate!</a>
+    <hr>
+    <a  routerLink='/recuperar'>Recuperar Contraseña</a>
+    </div>
+  </ion-card-content>
+  </ion-card>
+
+  </div>
+
+</ion-content>

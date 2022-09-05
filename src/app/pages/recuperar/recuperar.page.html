@@ -1,0 +1,23 @@
+<app-header titulo="Recuperar"></app-header>
+
+<ion-content>
+  <div class="fondo">
+    <ion-card class="recu">
+         <img class="fotis" src="../../../assets/img/icons8-password-reset-100.png"  alt="">
+        
+        <ion-card-header>
+          <ion-card-title color="duoc" >Recuperar</ion-card-title>
+          
+        </ion-card-header>
+          <div class="recu">
+            <ion-item>
+              <ion-label>Email: </ion-label>
+              <ion-input  type="text" placeholder="Ingrese email" [(ngModel)]="email"></ion-input>
+            </ion-item>
+          </div>
+          
+          <ion-button color="duoc" (click)="recuperar()">Recuperar</ion-button>
+        
+      </ion-card>
+    </div>
+</ion-content>
