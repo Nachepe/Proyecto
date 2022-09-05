@@ -8,7 +8,7 @@ export class UsuarioService {
   //variables necesarias para el trabajo del CRUD:
   usuarios: any[] = [
     {
-      rut: '11.111.111-1',
+      rut: '11111111-1',
       nom: 'Satan',
       ape: 'Lucifer',
       fecha_nac: '1990-03-24',
@@ -18,8 +18,8 @@ export class UsuarioService {
       email: 'admin@admin.cl'
     },
     {
-      rut: '11.111.111-2',
-      nom: 'Satan',
+      rut: '20417394-K',
+      nom: 'Roberto',
       ape: 'Gracias',
       fecha_nac: '1990-03-24',
       semestre: 1,
@@ -28,7 +28,7 @@ export class UsuarioService {
       email: 'alumno@duoc.cl'
     },
     {
-      rut: '11.111.111-3',
+      rut: '11111111-3',
       nom: 'Alan',
       ape: 'Gajardo',
       fecha_nac: '1990-03-24',

@@ -74,7 +74,7 @@ export class AdminPage implements OnInit {
   modificar(){
     this.usuarioService.modificarUsuario(this.alumno.value);
     this.limpiar();
-    this.tostada('Usuario Modificado Correctamente');
+    this.tostada('Usuario modificado correctamente');
     this.toggleMenu();
     //console.log(this.alumno.value)
   }
@@ -103,19 +103,19 @@ export class AdminPage implements OnInit {
 
   async borra(rutEliminar) {
     const alert = await this.alertController.create({
-      header: '¡Atencion!',
-      subHeader: 'Esta a punto de eliminar al usuario',
-      message: '¿Estas seguro?',
+      header: '¡Atención!',
+      subHeader: 'Está a punto de eliminar al usuario.',
+      message: '¿Está seguro?',
       buttons: [
         {
-          text: 'si',
+          text: 'sí',
           role: 'si',
           handler: () => {
             this.handlerMessage = 'Alert canceled';
           },
         },
         {
-          text: 'No',
+          text: 'no',
           role: 'no',
           handler: () => {
             this.handlerMessage = 'Alert confirmed';

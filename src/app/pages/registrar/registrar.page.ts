@@ -45,9 +45,18 @@ export class RegistrarPage implements OnInit {
      this.tostada('¡Contraseñas no coinciden!')
       return;
     }
-    this.usuarioService.agregarUsuario(this.alumno.value);
+    else if (this.usuarioService.agregarUsuario(this.alumno.value) == true){
+      this.tostada('Usuario registrado correctamente')
+      this.router.navigate(['/login']);
+      return;
+    }
+    else {
+      this.tostada('Usuario ya existe')
+      return;
+    }
+/*     this.usuarioService.agregarUsuario(this.alumno.value);
     this.tostada('Usuario registrado correctamente')
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login']); */
     //this.alumno.reset();
     //this.verificar_password = '';
   }
