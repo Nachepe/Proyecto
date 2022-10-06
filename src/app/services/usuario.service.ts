@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +41,9 @@ export class UsuarioService {
     }
   ];
 
-  constructor() { }
+
+  isAuthenticated = new BehaviorSubject(false);
+  constructor(private router:Router) { }
 
   //métodos del CRUD:
   agregarUsuario(usuario): boolean {
@@ -77,12 +81,27 @@ export class UsuarioService {
 
   //MÉTODO CUSTOMER:
   //validar rut y contraseña: método que recibe rut y password y me entrega un JSON de un usuario
+
+  getAuth(){
+    return this.isAuthenticated.value;
+  }
+  
+  logout(){
+    this.isAuthenticated.next(false);
+    this.router.navigate(['/login']);
+  }
+
   validarRutPassword(rut, pass) {
     return this.usuarios.find(u => u.rut == rut && u.password == pass);
   }
 
   validarEmailPassword(email, pass) {
-    return this.usuarios.find(u => u.email == email && u.password == pass);
+    var usuLogin: any;
+    usuLogin = this.usuarios.find(u => u.email == email && u.password == pass);
+    if(usuLogin !=undefined){
+      this.isAuthenticated.next(true);
+      return usuLogin;
+    }
   }
 
   validarEmail(email){

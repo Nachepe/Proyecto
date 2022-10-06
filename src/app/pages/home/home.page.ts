@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 
 @Component({
@@ -8,13 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit{
 
+usuario: any;
 
-
-  constructor() {}
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private usuarioService: UsuarioService) {}
 
   ngOnInit() {
-    
+    this.usuario = this.router.getCurrentNavigation().extras.state.usuario;
   }
 
-
+  logout(){
+    this.usuarioService.logout();
+  }
 }
