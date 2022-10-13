@@ -17,9 +17,11 @@ usuariolog: any[]=[];
                private route: ActivatedRoute,
                 private usuarioService: UsuarioService) {
                   this.route.queryParams.subscribe(params => {
+                      
                     if (this.router.getCurrentNavigation().extras.state) {
                       this.usuariolog= this.router.getCurrentNavigation().extras.state.usuariolog;
                     }
+                    
                   });     
                 }
   ngOnInit() {
@@ -28,5 +30,8 @@ usuariolog: any[]=[];
 
   logout(){
     this.usuarioService.logout();
+  }
+  prueba(){
+    console.log(this.usuariolog)
   }
 }

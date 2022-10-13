@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController, ToastController } from '@ionic/angular';
 import { NavigationExtras, Router } from '@angular/router';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -14,30 +14,38 @@ export class LoginPage implements OnInit {
   mail: string;
   password: string;
 
-  constructor(private toastController: ToastController, private router: Router, 
-    private usuarioService: UsuarioService,private menuCrl:MenuController) { }
+  KEY_USUARIOS = 'usuarios'; 
+
+  constructor(private toastController: ToastController,
+                  private router: Router, 
+                  private menuCrl:MenuController,
+                  private storage : StorageService) { }
 
   ngOnInit() {
   }
 
   //método para ingresar a home:
-  login(){
-    var usuarioLogin = this.usuarioService.validarEmailPassword(this.mail, this.password);
-    console.log(usuarioLogin);
-    //validar que al ingresar admin admin en el formulario, me diga hola:
+  async login(){
+    var usuarioLogin: any;
+  
+
+    usuarioLogin = await  this.storage.validarEmailPassword(this.mail, this.password,this.KEY_USUARIOS);  
+    
+    
+     //validar que al ingresar admin admin en el formulario, me diga hola:
     if (usuarioLogin != undefined) {
       let navigationExtras : NavigationExtras ={
         state:{
           usuariolog: usuarioLogin
         }
       };
-
+   
       //para enviar el dato que esta cargado
       this.router.navigate(['/home/'],navigationExtras);
       
     }else{
       this.tostadaError();
-    }
+    } 
   }
   toggleMenu(){
 

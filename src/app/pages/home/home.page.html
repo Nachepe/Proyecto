@@ -1,11 +1,40 @@
 <app-header titulo="Home"></app-header>
 
 <ion-content [fullscreen]="true">
+  
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <div *ngIf="usuariolog.tipo_usuario == 'Administrador'">
+      
+      <ion-tab-button tab="schedule">
+        <ion-icon name="calendar"></ion-icon>
+        <ion-label>Schedule</ion-label>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+    </div>
+      <ion-tab-button tab="speakers">
+        <ion-icon name="person-circle"></ion-icon>
+        <ion-label>Speakers</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="map">
+        <ion-icon name="map"></ion-icon>
+        <ion-label>Map</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="about">
+        <ion-icon name="information-circle"></ion-icon>
+        <ion-label>About</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
   <div class="home" >
+    <ion-button color="duoc" (click)="prueba()" >Lista</ion-button>
     <h1>Bienvenido: {{usuariolog.nom}}</h1>
     <p>tipo de usuario : {{usuariolog.tipo_usuario}}</p>
-
-  <img src="../../../assets/img/2560px-Logo_DuocUC.svg.png" alt="">
+    
+  <!-- <img src="../../../assets/img/2560px-Logo_DuocUC.svg.png" alt=""> -->
   <ion-button color="duoc" routerLink="/admin" >Lista</ion-button>
   <ion-button color="duoc" >Perfil</ion-button>
 </div>
