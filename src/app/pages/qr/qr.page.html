@@ -1,9 +1,25 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>qr</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header titulo="qr"></app-header>
 
 <ion-content>
+  <div class="fondo">
+    <ion-card class="recu">
+      
+        
+        <ion-card-header>
+          <ion-card-title color="duoc" >Generar Qr</ion-card-title>
+          
+        </ion-card-header>
+          <div >
 
+              <ngx-qrcode [elementType]="elementType" [value]="value"></ngx-qrcode>
+              
+              <!-- <ion-input placeholder="boton para generar Qr" [(ngModel)]="value" ></ion-input> -->
+               <p placeholder="Apretar botono para generar QR">{{value}}</p> 
+            
+          </div>
+          
+          <ion-button color="duoc" (click)="generarCodigo()">Iniciar Clase</ion-button>
+        
+      </ion-card>
+    </div>
 </ion-content>
