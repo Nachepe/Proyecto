@@ -41,8 +41,9 @@ export class UsuarioService {
     }
   ];
 
-
+//VARIABLE DE ESTADO DE LOGIN
   isAuthenticated = new BehaviorSubject(false);
+
   constructor(private router:Router) { }
 
   //métodos del CRUD:

@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
-import { RutService } from 'rut-chileno';
+
 import { ToastController } from '@ionic/angular';
+import { ValidacionesService } from 'src/app/services/validaciones.service';
 
 @Component({
   selector: 'app-registrar',
@@ -13,9 +14,9 @@ import { ToastController } from '@ionic/angular';
 export class RegistrarPage implements OnInit {
 
   //VAMOS A CREAR EL GRUPO DEL FORMULARIO:
-  alumno = new FormGroup({
+  usuario = new FormGroup({
    /*  rut : new FormControl('', [Validators.required, Validators.pattern('[0-9]{1,2}.[0-9]{3}.[0-9]{3}-[0-9kK]{1}')]), */
-    rut: new FormControl('', [Validators.required, this.rutService.validaRutForm]),
+    rut: new FormControl('',[Validators.required,Validators.pattern('[0-9]{1,2}.[0-9]{3}.[0-9]{3}-[0-9kK]')]),
     nom : new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]),
     ape : new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]),
     fecha_nac: new FormControl('', Validators.required),
@@ -32,7 +33,7 @@ export class RegistrarPage implements OnInit {
 
   constructor(private usuarioService: UsuarioService,
                  private router: Router,
-                private rutService: RutService,
+                private validaciones:ValidacionesService,
                 private toast :ToastController) { }
 
   ngOnInit() {
@@ -41,11 +42,23 @@ export class RegistrarPage implements OnInit {
 
   //método del formulario
   registrar(){
-    if (this.alumno.controls.password.value != this.verificar_password) {
+    //validacion de rut valido
+    if(!this.validaciones.validarRut(this.usuario.controls.rut.value)){
+      alert('rut incorrecto!');
+      return;
+    }
+
+    //validar edad
+    if(!this.validaciones.validarEdadMinima(17,this.usuario.controls.fecha_nac.value)){
+      alert('no cumple la edad minima');
+      return;
+    }
+
+    if (this.usuario.controls.password.value != this.verificar_password) {
      this.tostada('¡Contraseñas no coinciden!')
       return;
     }
-    else if (this.usuarioService.agregarUsuario(this.alumno.value) == true){
+    else if (this.usuarioService.agregarUsuario(this.usuario.value) == true){
       this.tostada('Usuario registrado correctamente')
       this.router.navigate(['/login']);
       return;

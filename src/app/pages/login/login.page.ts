@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController, ToastController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -12,7 +12,6 @@ export class LoginPage implements OnInit {
 
   //vamos a crear las variables necesarias:
   mail: string;
-  user: string;
   password: string;
 
   constructor(private toastController: ToastController, private router: Router, 
@@ -27,13 +26,14 @@ export class LoginPage implements OnInit {
     console.log(usuarioLogin);
     //validar que al ingresar admin admin en el formulario, me diga hola:
     if (usuarioLogin != undefined) {
-      if (usuarioLogin.tipo_usuario == 'Administrador'){
-        this.router.navigate(['/home']);
-      }else if(usuarioLogin.tipo_usuario == 'Docente'){
-        this.router.navigate(['/docente']);
-      }else{
-        this.router.navigate(['/alumno']);
-      }
+      let navigationExtras : NavigationExtras ={
+        state:{
+          usuariolog: usuarioLogin
+        }
+      };
+
+      //para enviar el dato que esta cargado
+      this.router.navigate(['/home/'],navigationExtras);
       
     }else{
       this.tostadaError();

@@ -13,7 +13,7 @@
     </ion-toolbar>
   </ion-header>
   <ion-content>
-     <form [formGroup]="alumno" (ngSubmit)="registrar()">
+     <form [formGroup]="usuario" (ngSubmit)="registrar2()">
 
      
     <ion-item>
@@ -22,7 +22,7 @@
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Rut</ion-label>
-      <ion-input type="text" maxlength="10" placeholder="Ingrese rut" formControlName="rut"></ion-input>
+      <ion-input type="text" maxlength="12" placeholder="Ingrese rut" formControlName="rut"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Nombre</ion-label>
@@ -70,9 +70,9 @@
     <ion-buttons>
 
     
-    <ion-button type="submit" [disabled]="!alumno.valid">Registrar <img src="../../../assets/img/icons8-registration-100.png" alt="">
+    <ion-button type="submit" [disabled]="!usuario.valid">Registrar <img src="../../../assets/img/icons8-registration-100.png" alt="">
     </ion-button>
-    <ion-button (click)="modificar()" [disabled]="!alumno.valid">Modificar <img src="../../../assets/img/icons8-edit-file-100.png" alt=""></ion-button>
+    <ion-button (click)="modificar()" [disabled]="!usuario.valid">Modificar <img src="../../../assets/img/icons8-edit-file-100.png" alt=""></ion-button>
     
     <ion-button (click)="limpiar()"  > Limpiar <img src="../../../assets/img/icons8-delete-100.png" alt=""></ion-button>
   </ion-buttons>
@@ -86,6 +86,7 @@
 
   <ion-card>
   <h1  >Lista de usuarios</h1>
+
   <ion-buttons>
   <ion-button (click)="agregar()">Agregar<img class="imagenbot" src="../../../assets/img/icons8-plus-math-100.png"></ion-button>
 </ion-buttons>

@@ -11,11 +11,19 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class HomePage implements OnInit{
 
 usuario: any;
+usuariolog: any[]=[];
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router, private usuarioService: UsuarioService) {}
-
+  constructor(   private router: Router,
+               private route: ActivatedRoute,
+                private usuarioService: UsuarioService) {
+                  this.route.queryParams.subscribe(params => {
+                    if (this.router.getCurrentNavigation().extras.state) {
+                      this.usuariolog= this.router.getCurrentNavigation().extras.state.usuariolog;
+                    }
+                  });     
+                }
   ngOnInit() {
-    this.usuario = this.router.getCurrentNavigation().extras.state.usuario;
+    /* this.usuario = this.router.getCurrentNavigation().extras.state.usuario; */
   }
 
   logout(){

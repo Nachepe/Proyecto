@@ -6,7 +6,7 @@
   <ion-card class="login" >
       
   <img class="foto" src="../../../assets/img/icons8-registration-100.png" alt="">
-  <form [formGroup]="alumno" (ngSubmit)="registrar()">
+  <form [formGroup]="usuario" (ngSubmit)="registrar()">
 
     <ion-item>
       <ion-label position="stacked">Email</ion-label>
@@ -14,7 +14,7 @@
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Rut</ion-label>
-      <ion-input maxlength="10" type="text" placeholder="Ingrese rut(sin puntos y con guion)" formControlName="rut"></ion-input>
+      <ion-input maxlength="12" type="text" placeholder="Ingrese rut(sin puntos y con guion)" formControlName="rut"></ion-input>
       
     </ion-item>
     <ion-item>
@@ -42,9 +42,9 @@
       <ion-input type="password" placeholder="Ingrese nuevamente contraseña" [(ngModel)]="verificar_password" [ngModelOptions]="{standalone: 'true'}"></ion-input>
     </ion-item>
 
-    <ion-chip  class="chipe" color="danger" *ngIf= "alumno.get('rut')?.errors?.['rutnovalido']">El rut no es valido</ion-chip><br>
+    <ion-chip  class="chipe" color="danger" *ngIf= "usuario.get('rut')?.errors?.['rutnovalido']">El rut no es valido</ion-chip><br>
   
-    <ion-button color="duoc" type="submit" [disabled]="!alumno.valid">REGISTRAR</ion-button>
+    <ion-button color="duoc" type="submit" [disabled]="!usuario.valid">REGISTRAR</ion-button>
   </form>
 </ion-card>
   <!-- <h1>LISTA DE USUARIOS</h1>
