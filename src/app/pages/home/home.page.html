@@ -6,15 +6,15 @@
     <ion-tab-bar slot="bottom">
       <div *ngIf="usuariolog.tipo_usuario == 'Administrador'">
       
-      <ion-tab-button tab="schedule">
+      <ion-tab-button (click)="irAdmin()">
         <ion-icon name="calendar"></ion-icon>
-        <ion-label>Schedule</ion-label>
-        <ion-badge>6</ion-badge>
+        <ion-label>Administrar</ion-label>
+        <!-- <ion-badge>0</ion-badge> -->
       </ion-tab-button>
     </div>
-      <ion-tab-button tab="speakers">
+      <ion-tab-button (click)="irPerfil()">
         <ion-icon name="person-circle"></ion-icon>
-        <ion-label>Speakers</ion-label>
+        <ion-label>Perfil</ion-label>
       </ion-tab-button>
   
       <ion-tab-button tab="map">
@@ -29,15 +29,17 @@
     </ion-tab-bar>
   </ion-tabs>
 
-  <div class="home" >
-    <ion-button color="duoc" (click)="prueba()" >Lista</ion-button>
-    <h1>Bienvenido: {{usuariolog.nom}}</h1>
-    <p>tipo de usuario : {{usuariolog.tipo_usuario}}</p>
+  
+    <!-- <ion-button color="duoc" (click)="prueba()" >pruebaauth</ion-button> -->
+    <!-- <h1>Bienvenido: {{usuariolog.nom}}</h1>
+    <p>tipo de usuario : {{usuariolog.tipo_usuario}}</p> -->
     
-  <!-- <img src="../../../assets/img/2560px-Logo_DuocUC.svg.png" alt=""> -->
-  <ion-button color="duoc" routerLink="/admin" >Lista</ion-button>
-  <ion-button color="duoc" >Perfil</ion-button>
-</div>
+  <div class="fondo">
+    
+  </div>
+  <!-- <ion-button color="duoc" routerLink="/admin" >Lista</ion-button>
+  <ion-button color="duoc" >Perfil</ion-button> -->
+
 
 
 </ion-content>

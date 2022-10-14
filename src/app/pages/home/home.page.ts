@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 
@@ -15,7 +16,8 @@ usuariolog: any[]=[];
 
   constructor(   private router: Router,
                private route: ActivatedRoute,
-                private usuarioService: UsuarioService) {
+                private usuarioService: UsuarioService,
+                private storage : StorageService) {
                   this.route.queryParams.subscribe(params => {
                       
                     if (this.router.getCurrentNavigation().extras.state) {
@@ -31,7 +33,31 @@ usuariolog: any[]=[];
   logout(){
     this.usuarioService.logout();
   }
-  prueba(){
-    console.log(this.usuariolog)
+  irAdmin(){
+    if (this.usuariolog != undefined) {
+      let navigationExtras : NavigationExtras ={
+        state:{
+          usuariolog: this.usuariolog
+        }
+      };
+   
+      //para enviar el dato que esta cargado
+      this.router.navigate(['/admin/'],navigationExtras);
+      
+    }
+  }
+
+  irPerfil(){
+    if (this.usuariolog != undefined) {
+      let navigationExtras : NavigationExtras ={
+        state:{
+          usuariolog: this.usuariolog
+        }
+      };
+   
+      //para enviar el dato que esta cargado
+      this.router.navigate(['/perfil/'],navigationExtras);
+      
+    }
   }
 }

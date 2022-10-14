@@ -6,8 +6,41 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class StorageService {
 
+  datos: any[] = [
+    {
+      rut: '11111111-1',
+      nom: 'Satan',
+      ape: 'Lucifer',
+      fecha_nac: '1990-03-24',
+      semestre: 1,
+      password: 'admin123',
+      tipo_usuario: 'Administrador',
+      email: 'admin@admin.cl'
+    },
+    {
+      rut: '20417394-K',
+      nom: 'Roberto',
+      ape: 'Gracias',
+      fecha_nac: '1990-03-24',
+      semestre: 1,
+      password: 'asd123',
+      tipo_usuario: 'Alumno',
+      email: 'alumno@duoc.cl'
+    },
+    {
+      rut: '11111111-3',
+      nom: 'Alan',
+      ape: 'Gajardo',
+      fecha_nac: '1990-03-24',
+      semestre: 1,
+      password: 'asd123',
+      tipo_usuario: 'Docente',
+      email: 'profesor@profesor.duoc.cl'
+    }
+  ];
+
   //variables a utilizar:
-  datos: any[] = [];
+  /* datos: any[] = []; */
   dato: any;
   mail: string;
   password: string;
@@ -40,6 +73,7 @@ export class StorageService {
   async getDatologin(key, mail) {
     this.datos = await this.storage.get(key) || [];
     this.dato = this.datos.find(persona => persona.email == mail);
+    this.isAuthenticated.next(true);
     return this.dato;
   }
   async getDatos(key): Promise<any[]> {
@@ -75,7 +109,9 @@ export class StorageService {
       return usuLogin;
     } 
   }
-
+  getAuth(){
+    return this.isAuthenticated.value;
+  }
   
   async actualizar(key, dato) {
     this.datos = await this.storage.get(key) || [];
