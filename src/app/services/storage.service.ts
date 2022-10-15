@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
 import { BehaviorSubject } from 'rxjs';
 @Injectable({
@@ -47,7 +48,7 @@ export class StorageService {
   //VARIABLE DE ESTADO DE LOGIN
   isAuthenticated = new BehaviorSubject(false);
 
-  constructor(private storage: Storage) {
+  constructor(private storage: Storage,private router:Router) {
     storage.create();
   }
 
@@ -73,7 +74,6 @@ export class StorageService {
   async getDatologin(key, mail) {
     this.datos = await this.storage.get(key) || [];
     this.dato = this.datos.find(persona => persona.email == mail);
-    this.isAuthenticated.next(true);
     return this.dato;
   }
   async getDatos(key): Promise<any[]> {
@@ -91,28 +91,38 @@ export class StorageService {
     await this.storage.set(key, this.datos);
   }
 
-
+//validador de email y password
   async validarEmailPassword(mail,pass,key) {
     var usuLogin: any;
+    
     this.dato= await this.getDatologin(key,mail);
    
-   if(this.dato.password == pass){
-    usuLogin=this.dato;
-    
-   }
-   
-
+    if(this.dato !=undefined){
+        if(this.dato.password == pass){
+          usuLogin=this.dato;
+          
+        }
+    }
     if(usuLogin !=undefined){
       
       this.isAuthenticated.next(true);
       
       return usuLogin;
-    } 
+    } else{
+      return undefined;
+    }
   }
+
+
+
+  //Variables de AuthGuard
   getAuth(){
     return this.isAuthenticated.value;
   }
-  
+  logout(){
+    this.isAuthenticated.next(false);
+    this.router.navigate(['/login']);
+  }
   async actualizar(key, dato) {
     this.datos = await this.storage.get(key) || [];
     console.log(this.datos)

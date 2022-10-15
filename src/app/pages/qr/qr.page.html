@@ -1,4 +1,4 @@
-<app-header titulo="qr"></app-header>
+<app-header titulo="Generar Clase"></app-header>
 
 <ion-content>
   <div class="fondo">
@@ -14,11 +14,16 @@
               <ngx-qrcode [elementType]="elementType" [value]="value"></ngx-qrcode>
               
               <!-- <ion-input placeholder="boton para generar Qr" [(ngModel)]="value" ></ion-input> -->
-               <p placeholder="Apretar botono para generar QR">{{value}}</p> 
+               <p placeholder="Apretar boton para generar QR">{{value}}</p> 
             
           </div>
           
-          <ion-button color="duoc" (click)="generarCodigo()">Iniciar Clase</ion-button>
+          <ion-button color="duoc" (click)="generarCodigo()">Generar codigo</ion-button>
+
+
+          <ion-input type="text" placeholder="Codigo de clase"></ion-input>
+          
+          <ion-button (click)="prueba()" color="duoc">Probar</ion-button>
         
       </ion-card>
     </div>
