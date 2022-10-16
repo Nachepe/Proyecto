@@ -65,9 +65,27 @@ export class StorageService {
     return false;
   }
 
+  async agregarClase(key, dato) {
+    this.datos = await this.storage.get(key) || [];
+
+    this.dato = await this.getDatoclase(key, dato.cod);
+    if (this.dato == undefined) {
+      this.datos.push(dato);
+      await this.storage.set(key, this.datos);
+      return true;
+    }
+    return false;
+  }
+
   async getDato(key, identificador) {
     this.datos = await this.storage.get(key) || [];
     this.dato = this.datos.find(persona => persona.rut == identificador);
+    return this.dato;
+  }
+
+  async getDatoclase(key, identificador) {
+    this.datos = await this.storage.get(key) || [];
+    this.dato = this.datos.find(clase => clase.cod == identificador);
     return this.dato;
   }
 
@@ -85,6 +103,16 @@ export class StorageService {
     this.datos = await this.storage.get(key) || [];
     this.datos.forEach((value, index) => {
       if (value.rut == dato) {
+        this.datos.splice(index, 1);
+      }
+    });
+    await this.storage.set(key, this.datos);
+  }
+
+  async eliminarClase(key, dato) {
+    this.datos = await this.storage.get(key) || [];
+    this.datos.forEach((value, index) => {
+      if (value.cod == dato) {
         this.datos.splice(index, 1);
       }
     });
@@ -127,6 +155,14 @@ export class StorageService {
     this.datos = await this.storage.get(key) || [];
     console.log(this.datos)
     var index = this.datos.findIndex(persona => persona.rut == dato.rut);
+    this.datos[index] = dato;
+
+    await this.storage.set(key, this.datos);
+  }
+
+  async actualizarClase(key, dato) {
+    this.datos = await this.storage.get(key) || [];
+    var index = this.datos.findIndex(clase => clase.cod == dato.cod);
     this.datos[index] = dato;
 
     await this.storage.set(key, this.datos);

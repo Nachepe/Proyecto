@@ -31,7 +31,7 @@ const routes: Routes = [
     path: 'admin',
 
     loadChildren: () => import('./pages/admin/admin.module').then( m => m.AdminPageModule),
-    canActivate: [AuthGuard]
+    /* canActivate: [AuthGuard] */
   },
   
   {
@@ -47,11 +47,13 @@ const routes: Routes = [
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
   {
+    path: 'clases',
+    loadChildren: () => import('./pages/clases/clases.module').then( m => m.ClasesPageModule)
+  },
+  {
     path: '**',
     loadChildren: () => import('./pages/error404/error404.module').then( m => m.Error404PageModule)
   },
- 
-
 
 
 ];

@@ -60,7 +60,7 @@ usuariolog: any[]=[];
       
     }
   }
-  irQr(){
+  irClases(){
     if (this.usuariolog != undefined) {
       let navigationExtras : NavigationExtras ={
         state:{
@@ -69,7 +69,7 @@ usuariolog: any[]=[];
       };
    
       //para enviar el dato que esta cargado
-      this.router.navigate(['/qr/'],navigationExtras);
+      this.router.navigate(['/clases/'],navigationExtras);
       
     }
   }

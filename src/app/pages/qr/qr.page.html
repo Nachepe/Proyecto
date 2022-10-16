@@ -18,12 +18,13 @@
             
           </div>
           
-          <ion-button color="duoc" (click)="generarCodigo()">Generar codigo</ion-button>
+          <ion-button color="duoc" [disabled]="isDisabled == true" (click)="generarCodigo()">Generar codigo</ion-button>
 
 
-          <ion-input type="text" placeholder="Codigo de clase"></ion-input>
+          <ion-input type="text" [(ngModel)]="xd" placeholder="Codigo de clase"></ion-input>
           
-          <ion-button (click)="prueba()" color="duoc">Probar</ion-button>
+          <ion-button (click)="prueba()" [disabled]="isDisabled == false" color="duoc">Iniciar Clase</ion-button>
+          <h1>Codigo Clase: {{codclase}}</h1>
         
       </ion-card>
     </div>
