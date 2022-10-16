@@ -5,6 +5,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 
 import { ToastController } from '@ionic/angular';
 import { ValidacionesService } from 'src/app/services/validaciones.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-registrar',
@@ -30,8 +31,8 @@ export class RegistrarPage implements OnInit {
   //usuarios: any[] = [];
   verificar_password: string;
   
-
-  constructor(private usuarioService: UsuarioService,
+  KEY_USUARIOS = 'usuarios';  
+  constructor(private storage: StorageService,
                  private router: Router,
                 private validaciones:ValidacionesService,
                 private toast :ToastController) { }
@@ -41,7 +42,9 @@ export class RegistrarPage implements OnInit {
   }
 
   //método del formulario
-  registrar(){
+  
+  async registrar(){
+
     //validacion de rut valido
     if(!this.validaciones.validarRut(this.usuario.controls.rut.value)){
       alert('rut incorrecto!');
@@ -54,24 +57,29 @@ export class RegistrarPage implements OnInit {
       return;
     }
 
+
+
     if (this.usuario.controls.password.value != this.verificar_password) {
-     this.tostada('¡Contraseñas no coinciden!')
+      this.tostada('¡Contraseñas no coinciden!')
       return;
     }
-    else if (this.usuarioService.agregarUsuario(this.usuario.value) == true){
-      this.tostada('Usuario registrado correctamente')
-      this.router.navigate(['/login']);
-      return;
+
+
+    console.log(this.usuario.value)
+    var respuesta: boolean = await this.storage.agregar(this.KEY_USUARIOS, this.usuario.value);
+
+    if(!respuesta){
+      this.tostada('¡Usuario ya existe!')
+      this.usuario.reset();
+      this.verificar_password = '';
+      return
     }
-    else {
-      this.tostada('Usuario ya existe')
-      return;
+    if (respuesta) {
+      this.tostada('¡Usuario Registrado con exito!')
+      
     }
-/*     this.usuarioService.agregarUsuario(this.alumno.value);
-    this.tostada('Usuario registrado correctamente')
-    this.router.navigate(['/login']); */
-    //this.alumno.reset();
-    //this.verificar_password = '';
+    this.usuario.reset();
+    this.verificar_password = '';
   }
   async tostada(msg:string) {
     const toast = await this.toast.create({

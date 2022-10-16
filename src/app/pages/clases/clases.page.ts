@@ -26,6 +26,7 @@ export class ClasesPage implements OnInit {
      modalidad : new FormControl ('',[Validators.required])
    });
 
+   usuarios: any[] = [];
   //VAMOS A CREAR UNA VARIABLE PARA OBTENER LA LISTA DE USUARIOS DEL SERVICIO DE USUARIOS:
   clases: any[] = [];
   usuariolog: any;
@@ -52,13 +53,13 @@ export class ClasesPage implements OnInit {
 
   async ngOnInit() {
     await this.cargarClases(); 
-   
+    await this.cargarPersonas(); 
   }
 
   //método del formulario
 
   async registrar2(){
-    this.clase.value.profe = this.usuariolog.rut;
+    
     console.log(this.clase.value)
      var respuesta: boolean = await this.storage.agregarClase(this.KEY_CLASES, this.clase.value);
 
@@ -77,6 +78,9 @@ export class ClasesPage implements OnInit {
   //CARGAR TODAS LAS PERSONAS QUE VIENEN DESDE EL STORAGE:
   async cargarClases(){
     this.clases = await this.storage.getDatos(this.KEY_CLASES);
+  }
+  async cargarPersonas(){
+    this.usuarios = await this.storage.getDatos('usuarios');
   }
 
    async eliminar(cod){
@@ -172,7 +176,8 @@ export class ClasesPage implements OnInit {
     loading.present();
   }
 
-  irQr(codigoClase){
+
+   goQr(codigoClase){
     if (this.usuariolog != undefined) {
       let navigationExtras : NavigationExtras ={
         state:{
@@ -187,5 +192,47 @@ export class ClasesPage implements OnInit {
       
     }
 
-  } 
+  }  
+
+  
+  irHome(){
+    if (this.usuariolog != undefined) {
+      let navigationExtras : NavigationExtras ={
+        state:{
+          usuariolog: this.usuariolog
+        }
+      };
+   
+      //para enviar el dato que esta cargado
+      this.router.navigate(['/home/'],navigationExtras);
+      
+    }
+  }
+  irAdmin(){
+    if (this.usuariolog != undefined) {
+      let navigationExtras : NavigationExtras ={
+        state:{
+          usuariolog: this.usuariolog
+        }
+      };
+   
+      //para enviar el dato que esta cargado
+      this.router.navigate(['/admin/'],navigationExtras);
+      
+    }
+  }
+
+  irPerfil(){
+    if (this.usuariolog != undefined) {
+      let navigationExtras : NavigationExtras ={
+        state:{
+          usuariolog: this.usuariolog
+        }
+      };
+   
+      //para enviar el dato que esta cargado
+      this.router.navigate(['/perfil/'],navigationExtras);
+      
+    }
+  }
 }

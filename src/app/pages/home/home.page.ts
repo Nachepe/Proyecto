@@ -73,4 +73,18 @@ usuariolog: any[]=[];
       
     }
   }
+
+    irQr(){
+    if (this.usuariolog != undefined) {
+      let navigationExtras : NavigationExtras ={
+        state:{
+          usuariolog: this.usuariolog
+        }
+      };
+   
+      //para enviar el dato que esta cargado
+      this.router.navigate(['/qr/'],navigationExtras);
+      
+    }
+  }
 }

@@ -7,38 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class StorageService {
 
-  datos: any[] = [
-    {
-      rut: '11111111-1',
-      nom: 'Satan',
-      ape: 'Lucifer',
-      fecha_nac: '1990-03-24',
-      semestre: 1,
-      password: 'admin123',
-      tipo_usuario: 'Administrador',
-      email: 'admin@admin.cl'
-    },
-    {
-      rut: '20417394-K',
-      nom: 'Roberto',
-      ape: 'Gracias',
-      fecha_nac: '1990-03-24',
-      semestre: 1,
-      password: 'asd123',
-      tipo_usuario: 'Alumno',
-      email: 'alumno@duoc.cl'
-    },
-    {
-      rut: '11111111-3',
-      nom: 'Alan',
-      ape: 'Gajardo',
-      fecha_nac: '1990-03-24',
-      semestre: 1,
-      password: 'asd123',
-      tipo_usuario: 'Docente',
-      email: 'profesor@profesor.duoc.cl'
-    }
-  ];
+  datos: any;
 
   //variables a utilizar:
   /* datos: any[] = []; */
@@ -76,6 +45,17 @@ export class StorageService {
     }
     return false;
   }
+  async agregarAsistencia(key, dato) {
+    this.datos = await this.storage.get(key) || [];
+
+    this.dato = await this.getDatoasis(key, dato.cod_asis);
+    if (this.dato == undefined) {
+      this.datos.push(dato);
+      await this.storage.set(key, this.datos);
+      return true;
+    }
+    return false;
+  }
 
   async getDato(key, identificador) {
     this.datos = await this.storage.get(key) || [];
@@ -86,6 +66,11 @@ export class StorageService {
   async getDatoclase(key, identificador) {
     this.datos = await this.storage.get(key) || [];
     this.dato = this.datos.find(clase => clase.cod == identificador);
+    return this.dato;
+  }
+  async getDatoasis(key, identificador) {
+    this.datos = await this.storage.get(key) || [];
+    this.dato = this.datos.find(asistencia => asistencia.cod_asis == identificador);
     return this.dato;
   }
 
@@ -166,6 +151,18 @@ export class StorageService {
     this.datos[index] = dato;
 
     await this.storage.set(key, this.datos);
+  }
+
+  async asistir(key, dato) {
+    this.datos = await this.storage.get(key) || [];
+    
+    var index = this.datos.findIndex(asistencia => asistencia.cod_asis == dato[1]);
+
+
+
+     this.datos[index].alumnos.push(dato[0]); 
+    
+     await this.storage.set(key, this.datos); 
   }
 
 }

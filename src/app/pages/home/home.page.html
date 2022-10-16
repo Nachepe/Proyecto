@@ -16,7 +16,7 @@
       </ion-tab-button>
     
       </div>
-      <div *ngIf="usuariolog.tipo_usuario == 'Docente'">
+      <div *ngIf="usuariolog.tipo_usuario != 'Alumno'">
       <ion-tab-button (click)="irClases()">
         <ion-icon name="sparkles-outline"></ion-icon>
 
@@ -24,7 +24,7 @@
       </ion-tab-button>
       </div>
       <div *ngIf="usuariolog.tipo_usuario == 'Alumno'">
-        <ion-tab-button tab="about">
+        <ion-tab-button (click)="irQr()">
           <ion-icon name="school-outline"></ion-icon>
           <ion-label>Asistencia</ion-label>
         </ion-tab-button>

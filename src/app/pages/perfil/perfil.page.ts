@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -21,6 +21,61 @@ export class PerfilPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  irAdmin(){
+    if (this.usuariolog != undefined) {
+      let navigationExtras : NavigationExtras ={
+        state:{
+          usuariolog: this.usuariolog
+        }
+      };
+   
+      //para enviar el dato que esta cargado
+      this.router.navigate(['/admin/'],navigationExtras);
+      
+    }
+  }
+
+  irHome(){
+    if (this.usuariolog != undefined) {
+      let navigationExtras : NavigationExtras ={
+        state:{
+          usuariolog: this.usuariolog
+        }
+      };
+   
+      //para enviar el dato que esta cargado
+      this.router.navigate(['/home/'],navigationExtras);
+      
+    }
+  }
+  irClases(){
+    if (this.usuariolog != undefined) {
+      let navigationExtras : NavigationExtras ={
+        state:{
+          usuariolog: this.usuariolog
+        }
+      };
+   
+      //para enviar el dato que esta cargado
+      this.router.navigate(['/clases/'],navigationExtras);
+      
+    }
+  }
+
+  irQr(){
+    if (this.usuariolog != undefined) {
+      let navigationExtras : NavigationExtras ={
+        state:{
+          usuariolog: this.usuariolog
+        }
+      };
+   
+      //para enviar el dato que esta cargado
+      this.router.navigate(['/qr/'],navigationExtras);
+      
+    }
   }
 
 }
