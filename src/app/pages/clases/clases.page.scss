@@ -1,3 +1,213 @@
+
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;   
+  }
 .extendido{
     --width: 900px
+}
+
+/* 
+.log{
+    background-color: antiquewhite;
+    border-radius: 15px ;
+    border: 2px solid;
+    border-color: darkslategrey;
+    padding: 3px 10px 10px 10px;
+} */
+
+.fotis{
+    width: 150px;
+}
+
+.fondo{
+    min-height: 110vh;
+    background: rgb(2,0,36);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../../../assets/img/concepcion.jpg);
+    background-size: cover;
+    text-align: center;
+}
+
+@font-face {   
+    font-family: 'Baloo2';    
+    src: url('../../../assets/fonts/Baloo2-VariableFont_wght.ttf');
+  }
+
+
+ion-card {
+    font-family: baloo2 !important;
+    background-color: #1a1a1a;
+    border-radius: 25px;
+    margin: 0 auto;
+    top: 5vh; 
+    /* height: 105vh; */
+    padding-bottom: 55px;
+    width: 80vh;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+
+
+    ion-list-header{
+        font-weight: bolder;
+        font-size:26px;
+    }
+    ion-card-header {
+        ion-card-subtitle {
+            font-size: x-large;
+            font-weight: bolder;
+            color: #FFB800;
+            
+        }
+
+        ion-card-title {
+            font-size: x-large;
+            
+        }
+    }
+
+      ion-item {
+        --background: none;
+
+        ion-label {
+            font-size: large;
+            font-weight: bolder;
+            color:#FFB800;
+        }
+        ion-input{
+            font-weight: bold;
+            color: #FFB800;
+        }
+    }  
+
+    a {
+        text-decoration: none;
+        font-size: large;
+        font-weight: bolder;
+        color: #FFB800;
+        font-family:baloo2;
+    }
+    ion-button{
+        margin-top: 5vh;
+        
+       font-family: baloo2;
+       font-weight: bolder;
+       font-size: large;
+       width: 50vh;
+
+    }
+}
+
+.imagenbot{
+    width: 30px;
+}
+
+.listavista{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #1a1a1a !important;
+    
+}
+
+.coloritem{
+    --ion-item-background: #1a1a1a;
+}
+
+
+
+@media (max-width: 400px) {
+    .fondo {
+        max-height: 127vh;
+        background-color: #1a1a1a;
+        height: 50hv;
+        
+        ion-card {
+            width: 100vw;
+            height: 115vh;
+        }
+    }
+    .fotis{
+        width: 90px;
+    }
+    ion-card {
+        font-family: baloo2 !important;
+        background-color: #1a1a1a;
+
+        
+    
+        border-radius: 0px;
+        margin: 0 auto;
+        top: 0vh;
+        
+        /* width: 80vh; */
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        justify-content: center;
+    
+        ion-card-header {
+            ion-card-subtitle {
+                font-size: x-large;
+                font-weight: bolder;
+                color: #FFB800;
+                
+            }
+    
+            ion-card-title {
+                font-size: x-large;
+                
+            }
+        }
+    
+        ion-item {
+            --background: none;
+    
+            ion-label {
+                font-size: small;
+                font-weight: bolder;
+                color: #FFB800;
+            }
+            ion-input{
+                font-size: small;
+                font-weight: lighter;
+                color: #FFB800;;
+            }
+        }
+    
+        a {
+            text-decoration: none;
+            font-size: large;
+            font-weight: bolder;
+            color: #FFB800;
+            font-family:baloo2;
+        }
+        ion-button{
+            margin-top: 5vh;
+            
+           font-family: baloo2;
+           font-weight: bolder;
+           font-size: large;
+           width: 30vh;
+    
+        }
+    }
+
+    ion-button{
+        font-family: baloo2;
+           
+           font-size: 0px;
+           width: 8vh;
+    }
+
+
+    .listavista{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: #1a1a1a;
+    }
+
 }

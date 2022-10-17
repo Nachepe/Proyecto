@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -252,5 +252,48 @@ export class AdminPage implements OnInit {
     });
     loading.present();
   }
+  irHome(){
+    if (this.usuariolog != undefined) {
+      let navigationExtras : NavigationExtras ={
+        state:{
+          usuariolog: this.usuariolog
+        }
+      };
+   
+      //para enviar el dato que esta cargado
+      this.router.navigate(['/home/'],navigationExtras);
+      
+    }
+  }
+  irAdmin(){
+    if (this.usuariolog != undefined) {
+      let navigationExtras : NavigationExtras ={
+        state:{
+          usuariolog: this.usuariolog
+        }
+      };
+   
+      //para enviar el dato que esta cargado
+      this.router.navigate(['/admin/'],navigationExtras);
+      
+    }
+  }
+
+  irPerfil(){
+    if (this.usuariolog != undefined) {
+      let navigationExtras : NavigationExtras ={
+        state:{
+          usuariolog: this.usuariolog
+        }
+      };
+   
+      //para enviar el dato que esta cargado
+      this.router.navigate(['/perfil/'],navigationExtras);
+      
+    }
+  }
+
+
+
 }
 
