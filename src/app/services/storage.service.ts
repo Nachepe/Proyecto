@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
+ 
 import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class StorageService {
 
   datos: any;
 
+  rutasist: [];
   //variables a utilizar:
   /* datos: any[] = []; */
   dato: any;
@@ -157,12 +159,23 @@ export class StorageService {
     this.datos = await this.storage.get(key) || [];
     
     var index = this.datos.findIndex(asistencia => asistencia.cod_asis == dato[1]);
+    this.rutasist = this.datos[index].alumnos 
 
+  
+    var encontrado= this.rutasist.findIndex(element => element == dato[0]);
+    if (encontrado >=0){
+      return false
 
+    }else{
+      this.datos[index].alumnos.push(dato[0]); 
+      await this.storage.set(key, this.datos);
+      return true
+    }
 
-     this.datos[index].alumnos.push(dato[0]); 
-    
-     await this.storage.set(key, this.datos); 
+    /* console.log(this.datos[index].alumnos); */
+    /* console.log(this.datos[index].find(a=> a.alumnos == dato[0])); */
+     /* this.datos[index].alumnos.push(dato[0]); 
+     await this.storage.set(key, this.datos); */ 
   }
 
 }

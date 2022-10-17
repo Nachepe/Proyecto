@@ -75,14 +75,18 @@ export class QrPage implements OnInit {
      
     
   }
-  async xdd(){
+  async marcarAsistencia(){
 
     this.datos.push(this.usuariolog.rut);
     this.datos.push(this.tomaqr);
-
-    console.log(this.datos);
     var prueba = await this.storage.asistir(this.KEY_ASISTENCIA,this.datos);
-     console.log(prueba);
+    if(prueba == true){
+      this.tostada('Asistencia marcada con exito')
+
+    }else{
+      this.tostada('Usted ya esta presente en esta clase')
+    }
+   
     /* this.storage.asistir(this.KEY_ASISTENCIA,'hola'); */
   }
 

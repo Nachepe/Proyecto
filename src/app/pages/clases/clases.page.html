@@ -129,35 +129,32 @@
 
 
 
- 
-<!--     <ion-tabs>
-      <ion-tab-bar slot="bottom">
-        <ion-tab-button (click)="irPerfil()">
-          <ion-icon name="person-circle"></ion-icon>
-          <ion-label>Perfil</ion-label>
-        </ion-tab-button>
-  
-         <div *ngIf="usuariolog.tipo_usuario == 'Administrador'">
-        <ion-tab-button (click)="irAdmin()">
-          <ion-icon name="calendar"></ion-icon>
-          <ion-label>Administrar</ion-label>
-        </ion-tab-button>
-      
-        </div>
-        <div *ngIf="usuariolog.tipo_usuario != 'Alumno'">
-        <ion-tab-button (click)="irHome()">
-          <ion-icon name="home-outline"></ion-icon>
-  
-          <ion-label>home</ion-label>
-        </ion-tab-button>
-        </div> 
-  
-      </ion-tab-bar> -->
-  
-  
-  
-    <!-- </ion-tabs> -->
- 
+    
   </div>
+  
+     <ion-tabs>
+       <ion-tab-bar slot="bottom">
+         <ion-tab-button (click)="irPerfil()">
+           <ion-icon name="person-circle"></ion-icon>
+           <ion-label>Perfil</ion-label>
+         </ion-tab-button>
+   
+          <div *ngIf="usuariolog.tipo_usuario == 'Administrador'">
+         <ion-tab-button (click)="irAdmin()">
+           <ion-icon name="calendar"></ion-icon>
+           <ion-label>Administrar</ion-label>
+         </ion-tab-button>
+       
+         </div>
+         <div *ngIf="usuariolog.tipo_usuario != 'Alumno'">
+         <ion-tab-button (click)="irHome()">
+           <ion-icon name="home-outline"></ion-icon>
+   
+           <ion-label>home</ion-label>
+         </ion-tab-button>
+         </div> 
+   
+       </ion-tab-bar>
+     </ion-tabs>
 
 </ion-content>
