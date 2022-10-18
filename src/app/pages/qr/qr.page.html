@@ -41,10 +41,6 @@
           
         </ion-card-header>
           
-          
-          
-
-
           <ion-input type="text"  [(ngModel)]="tomaqr" placeholder="Ingrese el codigo de su clase "></ion-input>
           
           <ion-button (click)="marcarAsistencia()" color="duoc">Marcar asistencia</ion-button>
@@ -52,36 +48,35 @@
         
       </ion-card>
     
-    
-      <ion-tab-bar slot="bottom">
-        <ion-tab-button (click)="irPerfil()">
-          <ion-icon name="person-circle"></ion-icon>
-          <ion-label>Perfil</ion-label>
-        </ion-tab-button>
-  
-        <div *ngIf="usuariolog.tipo_usuario == 'Administrador'">
-        <ion-tab-button (click)="irAdmin()">
-          <ion-icon name="calendar"></ion-icon>
-          <ion-label>Administrar</ion-label>
-        </ion-tab-button>
-      
-        </div>
-        <div *ngIf="usuariolog.tipo_usuario != 'Alumno'">
-        <ion-tab-button (click)="irClases()">
-          <ion-icon name="sparkles-outline"></ion-icon>
-  
-          <ion-label>Ingresar Clase</ion-label>
-        </ion-tab-button>
-        </div>
-        <div *ngIf="usuariolog.tipo_usuario == 'Alumno'">
-          <ion-tab-button (click)="irHome()">
-            <ion-icon name="school-outline"></ion-icon>
-            <ion-label>Ir Home</ion-label>
-          </ion-tab-button>
-          </div>
-      </ion-tab-bar>
     </div>
   
   
-    
 </ion-content>
+
+<ion-tab-bar slot="bottom">
+  <ion-tab-button (click)="irPerfil()">
+    <ion-icon name="person-circle"></ion-icon>
+    <ion-label>Perfil</ion-label>
+  </ion-tab-button>
+
+  <div *ngIf="usuariolog.tipo_usuario == 'Administrador'">
+  <ion-tab-button (click)="irAdmin()">
+    <ion-icon name="calendar"></ion-icon>
+    <ion-label>Administrar</ion-label>
+  </ion-tab-button>
+
+  </div>
+  <div *ngIf="usuariolog.tipo_usuario != 'Alumno'">
+  <ion-tab-button (click)="irClases()">
+    <ion-icon name="sparkles-outline"></ion-icon>
+
+    <ion-label>Ingresar Clase</ion-label>
+  </ion-tab-button>
+  </div>
+  <div *ngIf="usuariolog.tipo_usuario == 'Alumno'">
+    <ion-tab-button (click)="irHome()">
+      <ion-icon name="school"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+    </div>
+</ion-tab-bar>

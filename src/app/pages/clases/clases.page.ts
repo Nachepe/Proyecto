@@ -19,7 +19,7 @@ export class ClasesPage implements OnInit {
   clase = new FormGroup({
     /*  rut : new FormControl('', [Validators.required, Validators.pattern('[0-9]{1,2}.[0-9]{3}.[0-9]{3}-[0-9kK]{1}')]), */
      cod: new FormControl('',[Validators.required]),
-     nom : new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]),
+     nom : new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]),
      sigla : new FormControl('', [Validators.required]),
      semestre: new FormControl('', [Validators.required, Validators.min(1), Validators.max(8)]),
      profe: new FormControl('', [Validators.required]),

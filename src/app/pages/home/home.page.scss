@@ -1,19 +1,97 @@
+.fondo{
+    min-height: 97vh;
+    background: rgb(2,0,36);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../../../assets/img/concepcion.jpg);
+    background-size: cover;
+    text-align: center;
+}
+@font-face {   
+  font-family: 'Baloo2';    
+  src: url('../../../assets/fonts/Baloo2-VariableFont_wght.ttf');
+}
 
-.home{
+
+ion-card {
+  font-family: baloo2 !important;
+  background-color: #1a1a1a;
+  border-radius: 25px;
+  margin: 0 auto;
+  top: 5vh; 
+  /* height: 105vh; */
+  margin-bottom: 45px;
+  width: 80vh;
   display: flex;
   flex-direction: column; 
   align-items: center;
   justify-content: center;
-  
-  ion-button{
-    width: 30vh;
-    margin-top: 15vh;
 
+
+  ion-list-header{
+      font-weight: bolder;
+      font-size:26px;
+  }
+  ion-card-header {
+      ion-card-subtitle {
+          font-size: x-large;
+          font-weight: bolder;
+          color: #FFB800;
+          
+      }
+
+      ion-card-title {
+          font-size: x-large;
+          
+      }
   }
 
-  background-color: #1a1a1a;
-  min-height: 100%;
+    ion-item {
+      --background: none;
+
+      ion-label {
+          font-size: large;
+          font-weight: bolder;
+          color:#FFB800;
+      }
+      ion-input{
+          font-weight: bold;
+          color: #FFB800;
+      }
+  }  
+
+  a {
+      text-decoration: none;
+      font-size: large;
+      font-weight: bolder;
+      color: #FFB800;
+      font-family:baloo2;
+  }
+  ion-button{
+      margin-top: 5vh;
+      
+     font-family: baloo2;
+     font-weight: bolder;
+     font-size: large;
+     width: 50vh;
+
+  }
 }
+
+.imagenbot{
+  width: 30px;
+}
+
+.listavista{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #1a1a1a !important;
+  
+}
+
+.coloritem{
+  --ion-item-background: #1a1a1a;
+}
+
 
 
 

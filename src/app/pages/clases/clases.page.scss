@@ -1,13 +1,12 @@
 
-.sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    bottom: 0;   
-  }
+
 .extendido{
     --width: 900px
 }
 
+.prueba{
+    justify-content: space-between;
+}
 /* 
 .log{
     background-color: antiquewhite;
@@ -17,15 +16,11 @@
     padding: 3px 10px 10px 10px;
 } */
 
-.fotis{
-    width: 150px;
-}
 
 .fondo{
-    min-height: 110vh;
+    min-height: 88vh;
     background: rgb(2,0,36);
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../../../assets/img/concepcion.jpg);
-    background-size: cover;
+    background: linear-gradient(138deg, rgba(2,0,36,1) 0%, rgba(18,126,131,0.5256477591036415) 35%, rgba(0,212,255,1) 100%);
     text-align: center;
 }
 
@@ -40,9 +35,9 @@ ion-card {
     background-color: #1a1a1a;
     border-radius: 25px;
     margin: 0 auto;
-    top: 5vh; 
+    /* top: 5vh; */ 
     /* height: 105vh; */
-    padding-bottom: 55px;
+     /* margin-bottom: 45px;  */
     width: 80vh;
     display: flex;
     flex-direction: column; 
@@ -102,7 +97,14 @@ ion-card {
 
 .imagenbot{
     width: 30px;
+    
 }
+.imagenbot2{
+    width: 40px;
+    
+}
+
+
 
 .listavista{
     display: flex;

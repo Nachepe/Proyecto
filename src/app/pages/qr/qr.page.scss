@@ -20,7 +20,7 @@
 }
 
 .fondo{
-    /* height: 100vh; */
+    min-height: 92vh; 
     background: rgb(2,0,36);
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../../../assets/img/concepcion.jpg);
     background-size: cover;
@@ -38,14 +38,11 @@
 ion-card {
     font-family: baloo2 !important;
     background-color: #1a1a1a;
-
-    
-
     border-radius: 25px;
     margin: 0 auto;
     margin-bottom: 45px;
-    top: 5vh;
-    height: 85vh;
+    top: 5vh; 
+    height: 75vh;
     width: 80vh;
     display: flex;
     flex-direction: column; 
