@@ -40,15 +40,18 @@ const routes: Routes = [
   },
   {
     path: 'qr',
-    loadChildren: () => import('./pages/qr/qr.module').then( m => m.QrPageModule)
+    loadChildren: () => import('./pages/qr/qr.module').then( m => m.QrPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'perfil',
-    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
+    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'clases',
-    loadChildren: () => import('./pages/clases/clases.module').then( m => m.ClasesPageModule)
+    loadChildren: () => import('./pages/clases/clases.module').then( m => m.ClasesPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

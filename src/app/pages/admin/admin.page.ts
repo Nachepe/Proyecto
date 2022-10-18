@@ -265,7 +265,7 @@ export class AdminPage implements OnInit {
       
     }
   }
-  irAdmin(){
+  irClases(){
     if (this.usuariolog != undefined) {
       let navigationExtras : NavigationExtras ={
         state:{
@@ -274,7 +274,7 @@ export class AdminPage implements OnInit {
       };
    
       //para enviar el dato que esta cargado
-      this.router.navigate(['/admin/'],navigationExtras);
+      this.router.navigate(['/clases/'],navigationExtras);
       
     }
   }

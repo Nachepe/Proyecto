@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { StorageService } from 'src/app/services/storage.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
@@ -10,15 +11,18 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class RecuperarPage implements OnInit {
   email: string;
+  KEY_USUARIOS = 'usuarios'
 
   constructor(private toastController: ToastController, private router: Router, 
-    private usuarioService: UsuarioService) { }
+    private usuarioService: UsuarioService,
+    private storage: StorageService) { }
 
   ngOnInit() {
   }
 
-  recuperar(){
-    var usuarioR= this.usuarioService.validarEmail(this.email);
+  async recuperar(){
+    var usuarioR= await this.storage.getDatologin(this.KEY_USUARIOS,this.email);
+    console.log(usuarioR)
     
     //validar que al ingresar admin admin en el formulario, me diga hola:
     if (usuarioR != undefined) {

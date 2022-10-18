@@ -78,6 +78,7 @@ export class StorageService {
 
   async getDatologin(key, mail) {
     this.datos = await this.storage.get(key) || [];
+    console.log(this.datos);
     this.dato = this.datos.find(persona => persona.email == mail);
     return this.dato;
   }
