@@ -71,7 +71,7 @@
 
 
           <ion-buttons>
-            <ion-button color="duoc" type="submit">Registrar <img class="imagenbot2" src="../../../assets/img/icons8-registration-100.png" alt="">
+            <ion-button color="duoc" type="submit" [disabled]="!clase.valid">Registrar <img class="imagenbot2" src="../../../assets/img/icons8-registration-100.png" alt="">
             </ion-button>
             <ion-button color="duoc" (click)="modificar()">Modificar <img class="imagenbot2" src="../../../assets/img/icons8-edit-file-100.png" alt="">
             </ion-button>
@@ -91,7 +91,12 @@
 
       <h1 style="color: #FFB800;"> Lista de Clases</h1>
 
+      
+
+
       <ion-buttons>
+
+
 
         <ion-button color="duoc" *ngIf="usuariolog.tipo_usuario == 'Administrador'" (click)="agregar()">Agregar<img class="imagenbot"
             src="../../../assets/img/icons8-plus-math-100.png"></ion-button>
@@ -106,7 +111,7 @@
           <h3>Sigla: {{clase.sigla}}</h3>
           
 
-            <div *ngIf="usuariolog.tipo_usuario == 'Docente'">
+            <div class="prueba"  *ngIf="usuariolog.tipo_usuario == 'Docente'">
               <ion-buttons>
               <ion-button color="Success" (click)="goQr(clase.cod)">Iniciar Clase<img class="imagenbot" src="../../../assets/img/icons8-add-properies-100.png"></ion-button>
             </ion-buttons>
@@ -143,26 +148,3 @@
 
 
 </ion-content>
-
-<ion-tab-bar class="sticky" slot="bottom">
-  <ion-tab-button (click)="irPerfil()">
-    <ion-icon name="person-circle"></ion-icon>
-    <ion-label>Perfil</ion-label>
-  </ion-tab-button>
-
-  <div *ngIf="usuariolog.tipo_usuario == 'Administrador'">
-    <ion-tab-button (click)="irAdmin()">
-      <ion-icon name="calendar"></ion-icon>
-      <ion-label>Administrar</ion-label>
-    </ion-tab-button>
-
-  </div>
-  <div *ngIf="usuariolog.tipo_usuario != 'Alumno'">
-    <ion-tab-button (click)="irHome()">
-      <ion-icon name="home"></ion-icon>
-
-      <ion-label>home</ion-label>
-    </ion-tab-button>
-  </div>
-
-</ion-tab-bar>

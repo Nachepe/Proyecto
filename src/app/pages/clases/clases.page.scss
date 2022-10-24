@@ -121,20 +121,32 @@ ion-card {
 
 
 @media (max-width: 400px) {
+
+    ion-content {
+        
+        --offset-bottom: auto!important;
+        --overflow: hidden;
+        overflow: auto;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
     .fondo {
-        max-height: 127vh;
+       /*  max-height: 127vh; */
         background-color: #1a1a1a;
-        height: 50hv;
+        /* height: 50hv; */
         
         ion-card {
             width: 100vw;
-            height: 115vh;
+            /* height: 115vh; */
         }
     }
     .fotis{
         width: 90px;
     }
     ion-card {
+
+        min-height: 10vh;
         font-family: baloo2 !important;
         background-color: #1a1a1a;
 

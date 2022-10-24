@@ -9,18 +9,23 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 export class PerfilPage implements OnInit {
   usuario: any;
   usuariolog: any[]=[];
+  rut: string;
+
   constructor(private router: Router,
     private route: ActivatedRoute,) {
-    this.route.queryParams.subscribe(params => {
+   /*  this.route.queryParams.subscribe(params => {
         
       if (this.router.getCurrentNavigation().extras.state) {
         this.usuariolog= this.router.getCurrentNavigation().extras.state.usuariolog;
       }
       
-    });     
+    });      */
   }
 
   ngOnInit() {
+    this.rut = this.route.snapshot.paramMap.get('rut');
+   
+    this.usuariolog= this.router.getCurrentNavigation().extras.state.usuariolog;
   }
 
   irAdmin(){

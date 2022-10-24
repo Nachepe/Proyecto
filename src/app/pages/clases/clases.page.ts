@@ -26,14 +26,16 @@ export class ClasesPage implements OnInit {
      modalidad : new FormControl ('',[Validators.required])
    });
 
-   usuarios: any[] = [];
+   usuarios: any;
   //VAMOS A CREAR UNA VARIABLE PARA OBTENER LA LISTA DE USUARIOS DEL SERVICIO DE USUARIOS:
   clases: any[] = [];
-  usuariolog: any;
+  usuariolog: any = {};
 
   handlerMessage = '';
   roleMessage = '';
   KEY_CLASES = 'clases';  
+  KEY_USUARIOS = 'usuarios'; 
+  rut: any;
   
 
   constructor(private alertcontroller: AlertController,
@@ -44,19 +46,35 @@ export class ClasesPage implements OnInit {
                private menuCtrl : MenuController,
                private toast :ToastController,
                ) {
-                this.route.queryParams.subscribe(params => {
+                 /* this.route.queryParams.subscribe(params => {
+        
                   if (this.router.getCurrentNavigation().extras.state) {
                     this.usuariolog= this.router.getCurrentNavigation().extras.state.usuariolog;
                   }
-                });     
+                  
+                });   */
               }
 
   async ngOnInit() {
     await this.cargarClases(); 
     await this.cargarPersonas(); 
+
+    this.rut = this.route.snapshot.paramMap.get('rut');
+    console.log(this.rut);
+    this.usuariolog= await this.storage.getDato(this.KEY_USUARIOS,this.rut);
+    console.log(this.usuariolog);
+    /* console.log(this.router.getCurrentNavigation().extras.state.usuariolog) */
+     /* this.usuariolog= this.router.getCurrentNavigation().extras.state.usuariolog;  */
   }
 
   //método del formulario
+
+  prueba(){
+    this.usuariolog=this.usuariolog;
+    console.log(this.usuariolog)
+  }
+
+
 
   async registrar2(){
     
@@ -73,6 +91,7 @@ export class ClasesPage implements OnInit {
       await this.cargarClases();
     }
     this.clase.reset();
+    this.toggleMenu();
      
   }
   //CARGAR TODAS LAS PERSONAS QUE VIENEN DESDE EL STORAGE:
@@ -186,8 +205,25 @@ export class ClasesPage implements OnInit {
         }
       };
    
+      var datosClase = {
+        usuariolog: this.usuariolog,
+        codclase: codigoClase
+      }
+
+      console.log(datosClase);
+
+      let prueba = JSON.stringify(datosClase);
+
+      console.log(prueba);
+
+      let prueba2 = JSON.parse(prueba);
+
+      console.log(prueba2);
       //para enviar el dato que esta cargado
-       this.router.navigate(['/qr/'],navigationExtras); 
+       //this.router.navigate(['/tabs/qr/'+this.usuariolog.rut],navigationExtras); 
+
+
+      this.router.navigate(['/tabs/qr/'+ prueba],navigationExtras); 
       
       
     }
@@ -195,44 +231,4 @@ export class ClasesPage implements OnInit {
   }  
 
   
-  irHome(){
-    if (this.usuariolog != undefined) {
-      let navigationExtras : NavigationExtras ={
-        state:{
-          usuariolog: this.usuariolog
-        }
-      };
-   
-      //para enviar el dato que esta cargado
-      this.router.navigate(['/home/'],navigationExtras);
-      
-    }
-  }
-  irAdmin(){
-    if (this.usuariolog != undefined) {
-      let navigationExtras : NavigationExtras ={
-        state:{
-          usuariolog: this.usuariolog
-        }
-      };
-   
-      //para enviar el dato que esta cargado
-      this.router.navigate(['/admin/'],navigationExtras);
-      
-    }
-  }
-
-  irPerfil(){
-    if (this.usuariolog != undefined) {
-      let navigationExtras : NavigationExtras ={
-        state:{
-          usuariolog: this.usuariolog
-        }
-      };
-   
-      //para enviar el dato que esta cargado
-      this.router.navigate(['/perfil/'],navigationExtras);
-      
-    }
-  }
 }

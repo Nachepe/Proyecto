@@ -15,11 +15,7 @@ export class HeaderComponent implements OnInit {
               private route: ActivatedRoute,
               private router:Router,
               private storage:StorageService) {
-    this.route.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        this.usuariolog= this.router.getCurrentNavigation().extras.state.usuariolog;
-      }
-    });     
+    
   }
 
   ngOnInit() {}

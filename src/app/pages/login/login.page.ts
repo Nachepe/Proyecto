@@ -21,7 +21,41 @@ export class LoginPage implements OnInit {
                   private menuCrl:MenuController,
                   private storage : StorageService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    var admin = {
+      rut: '11111111-1',
+      nom: 'Satan',
+      ape: 'Lucifer',
+      fecha_nac: '1990-03-24',
+      semestre: 1,
+      password: 'asd123',
+      tipo_usuario: 'Administrador',
+      email: 'administrador@admin.cl'
+    };
+    var profe = {
+      rut: '11111111-3',
+      nom: 'Alan',
+      ape: 'Gajardo',
+      fecha_nac: '1990-03-24',
+      semestre: 1,
+      password: 'asd123',
+      tipo_usuario: 'Docente',
+      email: 'benja@duoc.cl'
+    };
+    var alumno ={
+      rut: '20417394-K',
+      nom: 'Roberto',
+      ape: 'Gracias',
+      fecha_nac: '1990-03-24',
+      semestre: 1,
+      password: 'asd123',
+      tipo_usuario: 'Alumno',
+      email: 'alumno@duoc.cl'
+    };
+    await this.storage.agregar(this.KEY_USUARIOS, admin);
+    await this.storage.agregar(this.KEY_USUARIOS, profe);
+    await this.storage.agregar(this.KEY_USUARIOS, alumno);
+
   }
 
   //método para ingresar a home:
@@ -41,7 +75,8 @@ export class LoginPage implements OnInit {
       };
    
       //para enviar el dato que esta cargado
-      this.router.navigate(['/home/'],navigationExtras);
+      
+      this.router.navigate(['/tabs/perfil/'+usuarioLogin.rut],navigationExtras);
       
     }else{
       this.tostadaError();

@@ -19,64 +19,37 @@
       <ion-list class="coloritem" >
         <ion-list-header color="duoc" > DATOS PERSONALES </ion-list-header>
 
-        <ion-item>
-            <ion-input readonly >Nombre: {{usuariolog.nom}}</ion-input>
+
+        <div>
+
+        
+        <ion-item >
+            <p>Nombre: {{usuariolog.nom}}</p>
         </ion-item>
         <hr>
         <ion-item>
-          <ion-input readonly >Apellido: {{usuariolog.ape}}</ion-input>
+          <p>Apellido: {{usuariolog.ape}}</p>
       </ion-item>
         <hr>  
         <ion-item>
-          <ion-input readonly > Rut: {{usuariolog.rut}} </ion-input>
+          <p>Rut: {{usuariolog.rut}}</p> 
         </ion-item>
         <hr>
         <ion-item>
-          <ion-input readonly> Fecha de Nacimiento: {{usuariolog.fecha_nac}} </ion-input>
+        <p>  Fecha de Nacimiento: {{usuariolog.fecha_nac}} </p> 
         </ion-item>
         <hr>
         <ion-item>
-          <ion-input readonly  > Semestre: {{usuariolog.semestre}} </ion-input>
+        <p>  Semestre: {{usuariolog.semestre}} </p> 
         </ion-item>
         <hr>
-        <ion-item>
-          
-        </ion-item>
-        <hr>
+ 
+
+      </div>
       </ion-list>
       </ion-card>
     </div>
 </ion-content>
-
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button (click)="irHome()">
-      <ion-icon name="home"></ion-icon>
-      <ion-label>Home</ion-label>
-    </ion-tab-button>
-
-    <div *ngIf="usuariolog.tipo_usuario == 'Administrador'">
-    <ion-tab-button (click)="irAdmin()">
-      <ion-icon name="calendar"></ion-icon>
-      <ion-label>Administrar</ion-label>
-    </ion-tab-button>
-  
-    </div>
-    <div *ngIf="usuariolog.tipo_usuario != 'Alumno'">
-    <ion-tab-button (click)="irClases()">
-      <ion-icon name="school"></ion-icon>
-
-      <ion-label>Ingresar Clase</ion-label>
-    </ion-tab-button>
-    </div>
-    <div *ngIf="usuariolog.tipo_usuario == 'Alumno'">
-      <ion-tab-button (click)="irQr()">
-        <ion-icon name="school"></ion-icon>
-        <ion-label>Asistencia</ion-label>
-      </ion-tab-button>
-      </div>
-
-
-  </ion-tab-bar>
 
 
 

@@ -3,9 +3,7 @@
 <ion-content>
   <div class="fondo">
 
-
-
-    <ion-card *ngIf="this.usuariolog.tipo_usuario =='Docente'"   class="recu">
+    <ion-card class="recu" *ngIf="usuariolog.tipo_usuario == 'Docente'" >
       
         
         <ion-card-header>
@@ -16,34 +14,14 @@
 
               <ngx-qrcode [elementType]="elementType" [value]="value"></ngx-qrcode>
               
-              <!-- <ion-input placeholder="boton para generar Qr" [(ngModel)]="value" ></ion-input> -->
+              
                <p placeholder="Apretar boton para generar QR">{{value}}</p> 
             
           </div>
+          <ion-button (click)="prueba()" *ngIf="isDisabled == true" color="duoc">Iniciar Clase</ion-button>
+          <ion-button color="duoc" *ngIf="isDisabled == false" (click)="generarCodigo()">Generar codigo</ion-button>
+          <ion-input type="text" *ngIf="isDisabled == false" [(ngModel)]="xd" placeholder="Codigo de clase"></ion-input>
           
-          <ion-button color="duoc" [disabled]="isDisabled == true" (click)="generarCodigo()">Generar codigo</ion-button>
-
-
-          <ion-input type="text" [(ngModel)]="xd" placeholder="Codigo de clase"></ion-input>
-          
-          <ion-button (click)="prueba()" [disabled]="isDisabled == false" color="duoc">Iniciar Clase</ion-button>
-          <h1>Codigo Clase: {{codclase}}</h1>
-        
-      </ion-card>
-
-
-
-      <ion-card *ngIf="this.usuariolog.tipo_usuario =='Alumno'"   class="recu">
-      
-        
-        <ion-card-header>
-          <ion-card-title color="duoc" >Leer Qr</ion-card-title>
-          
-        </ion-card-header>
-          
-          <ion-input type="text"  [(ngModel)]="tomaqr" placeholder="Ingrese el codigo de su clase "></ion-input>
-          
-          <ion-button (click)="marcarAsistencia()" color="duoc">Marcar asistencia</ion-button>
           
         
       </ion-card>
@@ -52,31 +30,3 @@
   
   
 </ion-content>
-
-<ion-tab-bar slot="bottom">
-  <ion-tab-button (click)="irPerfil()">
-    <ion-icon name="person-circle"></ion-icon>
-    <ion-label>Perfil</ion-label>
-  </ion-tab-button>
-
-  <div *ngIf="usuariolog.tipo_usuario == 'Administrador'">
-  <ion-tab-button (click)="irAdmin()">
-    <ion-icon name="calendar"></ion-icon>
-    <ion-label>Administrar</ion-label>
-  </ion-tab-button>
-
-  </div>
-  <div *ngIf="usuariolog.tipo_usuario != 'Alumno'">
-  <ion-tab-button (click)="irClases()">
-    <ion-icon name="sparkles-outline"></ion-icon>
-
-    <ion-label>Ingresar Clase</ion-label>
-  </ion-tab-button>
-  </div>
-  <div *ngIf="usuariolog.tipo_usuario == 'Alumno'">
-    <ion-tab-button (click)="irHome()">
-      <ion-icon name="home"></ion-icon>
-      <ion-label>Home</ion-label>
-    </ion-tab-button>
-    </div>
-</ion-tab-bar>

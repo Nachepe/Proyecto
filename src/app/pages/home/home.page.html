@@ -8,33 +8,5 @@
 </ion-content>
 
 
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button (click)="irPerfil()">
-      <ion-icon name="person-circle"></ion-icon>
-      <ion-label>Perfil</ion-label>
-    </ion-tab-button>
-
-    <div *ngIf="usuariolog.tipo_usuario == 'Administrador'">
-    <ion-tab-button (click)="irAdmin()">
-      <ion-icon name="calendar"></ion-icon>
-      <ion-label>Administrar</ion-label>
-    </ion-tab-button>
   
-    </div>
-    <div *ngIf="usuariolog.tipo_usuario != 'Alumno'">
-    <ion-tab-button (click)="irClases()">
-      <ion-icon name="add-circle"></ion-icon>
-
-      <ion-label>Ingresar Clase</ion-label>
-    </ion-tab-button>
-    </div>
-    <div *ngIf="usuariolog.tipo_usuario == 'Alumno'">
-      <ion-tab-button (click)="irQr()">
-        <ion-icon name="school"></ion-icon>
-        <ion-label>Asistencia</ion-label>
-      </ion-tab-button>
-      </div>
-
-
-  </ion-tab-bar>
  

@@ -13,7 +13,7 @@ export class HomePage implements OnInit{
 
 usuario: any;
 usuariolog: any[]=[];
-
+rut: string;
   constructor(   private router: Router,
                private route: ActivatedRoute,
                 private usuarioService: UsuarioService,
@@ -27,8 +27,10 @@ usuariolog: any[]=[];
                   });     
                 }
   ngOnInit() {
-    /* this.usuario = this.router.getCurrentNavigation().extras.state.usuario; */
+
+
   }
+
 
   logout(){
     this.usuarioService.logout();

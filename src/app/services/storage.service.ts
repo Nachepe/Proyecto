@@ -8,11 +8,11 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class StorageService {
 
-  datos: any;
+  datos: any=[];
 
   rutasist: [];
   //variables a utilizar:
-  /* datos: any[] = []; */
+
   dato: any;
   mail: string;
   password: string;
@@ -158,20 +158,26 @@ export class StorageService {
 
   async asistir(key, dato) {
     this.datos = await this.storage.get(key) || [];
-    
-    var index = this.datos.findIndex(asistencia => asistencia.cod_asis == dato[1]);
-    this.rutasist = this.datos[index].alumnos 
 
-  
+
+
+
+    var index = this.datos.findIndex(asistencia => asistencia.cod_asis == dato[1]);
+    if(index == -1){
+      return -1
+    }
+    this.rutasist = this.datos[index].alumnos  
     var encontrado= this.rutasist.findIndex(element => element == dato[0]);
+
     if (encontrado >=0){
-      return false
+      return 1
 
     }else{
+      
       this.datos[index].alumnos.push(dato[0]); 
       await this.storage.set(key, this.datos);
-      return true
-    }
+      return 2
+    } 
 
     /* console.log(this.datos[index].alumnos); */
     /* console.log(this.datos[index].find(a=> a.alumnos == dato[0])); */
