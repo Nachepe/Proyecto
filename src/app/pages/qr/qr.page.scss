@@ -99,6 +99,15 @@ ion-card {
 
 
 @media (max-width: 400px) {
+    ion-content {
+        
+        --offset-bottom: auto!important;
+        --overflow: hidden;
+        overflow: auto;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
     .fondo {
         max-height: 100%;
         background-color: #1a1a1a;
