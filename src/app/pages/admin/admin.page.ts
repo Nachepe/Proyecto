@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
+
+import { FireService } from 'src/app/services/fireservice.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -18,6 +20,7 @@ export class AdminPage implements OnInit {
   //VAMOS A CREAR EL GRUPO DEL FORMULARIO:
   usuario = new FormGroup({
     /*  rut : new FormControl('', [Validators.required, Validators.pattern('[0-9]{1,2}.[0-9]{3}.[0-9]{3}-[0-9kK]{1}')]), */
+     id: new FormControl(''),
      rut: new FormControl('',[Validators.required,Validators.pattern('[0-9]{1,2}.[0-9]{3}.[0-9]{3}-[0-9kK]')]),
      nom : new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]),
      ape : new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]),
@@ -45,7 +48,8 @@ export class AdminPage implements OnInit {
                private menuCtrl : MenuController,
                 private validaciones: ValidacionesService,
                private toast :ToastController,
-               private alertController: AlertController) {
+               private alertController: AlertController,
+               private fireService:FireService) {
                 this.route.queryParams.subscribe(params => {
                   if (this.router.getCurrentNavigation().extras.state) {
                     this.usuariolog= this.router.getCurrentNavigation().extras.state.usuariolog;
@@ -59,7 +63,7 @@ export class AdminPage implements OnInit {
   }
 
   //método del formulario
-  registrar(){
+/*   registrar(){
 
     //validacion de rut valido
     if(!this.validaciones.validarRut(this.usuario.controls.rut.value)){
@@ -89,12 +93,14 @@ export class AdminPage implements OnInit {
     this.tostada('¡Alumno registrado correctamente!');
     this.usuario.reset();
     this.verificar_password = '';
+  } */
+  obtenerUsuario(rut) {
+    return this.usuarios.find(usuario => usuario.rut == rut);
   }
-
 
   async registrar2(){
 
-    //validacion de rut valido
+     //validacion de rut valido
     if(!this.validaciones.validarRut(this.usuario.controls.rut.value)){
       alert('rut incorrecto!');
       return;
@@ -111,10 +117,27 @@ export class AdminPage implements OnInit {
     if (this.usuario.controls.password.value != this.verificar_password) {
       this.tostada('¡Contraseñas no coinciden!')
       return;
+    } 
+
+
+    
+    var enc = this.obtenerUsuario(this.usuario.value.rut)
+
+    
+
+    if(enc == undefined){
+      this.fireService.agregar('usuarios',this.usuario.value)
+      this.tostada('¡Usuario Registrado con exito!')
+      await this.cargarUsuarios();
+      this.usuario.reset();
+      this.verificar_password = '';
+      this.menuCtrl.toggle();
+
+    }else{
+      this.tostada('¡Usuario ya existe!')     
     }
 
-
-    console.log(this.usuario.value)
+    /* 
     var respuesta: boolean = await this.storage.agregar(this.KEY_USUARIOS, this.usuario.value);
 
     if(!respuesta){
@@ -128,15 +151,40 @@ export class AdminPage implements OnInit {
       await this.cargarUsuarios();
     }
     this.usuario.reset();
-    this.verificar_password = '';
-  }
-  //CARGAR TODAS LAS PERSONAS QUE VIENEN DESDE EL STORAGE:
-  async cargarUsuarios(){
-    this.usuarios = await this.storage.getDatos(this.KEY_USUARIOS);
+    this.verificar_password = ''; */
   }
 
-  async eliminar(rut){
-    await this.storage.eliminar(this.KEY_USUARIOS, rut);
+  //CARGAR TODAS LAS PERSONAS QUE VIENEN DESDE EL STORAGE:
+  async cargarUsuarios(){
+    /* this.usuarios = await this.storage.getDatos(this.KEY_USUARIOS); */
+    this.fireService.getDatos('usuarios').subscribe(
+      (data:any) => {
+        this.usuarios = [];
+        for(let u of data){
+          let usuarioJson = u.payload.doc.data();
+          usuarioJson['id'] = u.payload.doc.id;
+          this.usuarios.push(usuarioJson);
+          //console.log(u.payload.doc.data());
+        }
+      }
+    );
+  }
+
+
+
+
+
+
+
+
+  async eliminar(id){
+    /*METODO DE STORAGE */
+    /* await this.storage.eliminar(this.KEY_USUARIOS, rut); */
+
+/*METODO DE FIREBASE */
+    console.log(id);
+    this.fireService.eliminar('usuarios', id);
+
     await this.cargando('eliminando...');
     await this.cargarUsuarios();
   }
@@ -144,11 +192,21 @@ export class AdminPage implements OnInit {
     this.usuarioService.eliminarUsuario(rutEliminar);
   } */
 
- async buscar(rutBuscar){
-    var alumnoEncontrado = await this.storage.getDato(this.KEY_USUARIOS, rutBuscar);
-  
-    this.usuario.setValue(alumnoEncontrado);
-    this.verificar_password = alumnoEncontrado.password;
+ async buscar(id){
+    /* var alumnoEncontrado = await this.storage.getDato(this.KEY_USUARIOS, rutBuscar); */
+    let alumnoEncontrado = this.fireService.getDato('usuarios', id);
+    alumnoEncontrado.subscribe(
+      (response: any) => {
+        //console.log(response.data());
+        let usu = response.data();
+        usu['id'] = response.id;
+        //console.log(usu);
+        this.usuario.setValue( usu );
+        this.verificar_password=usu.password
+        
+      }
+    );
+   
     this.toggleMenu();
   }
 
@@ -174,7 +232,23 @@ export class AdminPage implements OnInit {
     }
 
 
-    await this.storage.actualizar(this.KEY_USUARIOS, this.usuario.value);
+    /* await this.storage.actualizar(this.KEY_USUARIOS, this.usuario.value); */
+
+    let id = this.usuario.controls.id.value;
+   let usuModificado = {
+     rut: this.usuario.controls.rut.value,
+     nom: this.usuario.controls.nom.value,
+     ape: this.usuario.controls.ape.value,
+     fecha_nac: this.usuario.controls.fecha_nac.value,
+     semestre :this.usuario.controls.semestre.value,
+     password:this.usuario.controls.password.value,
+     tipo_usuario:this.usuario.controls.tipo_usuario.value,
+     email:this.usuario.controls.email.value
+   }
+   this.fireService.modificar('usuarios', id, usuModificado);
+
+
+
     await this.cargando('actualizando Usuario...');
      await this.cargarUsuarios();
     
@@ -252,48 +326,5 @@ export class AdminPage implements OnInit {
     });
     loading.present();
   }
-  irHome(){
-    if (this.usuariolog != undefined) {
-      let navigationExtras : NavigationExtras ={
-        state:{
-          usuariolog: this.usuariolog
-        }
-      };
-   
-      //para enviar el dato que esta cargado
-      this.router.navigate(['/home/'],navigationExtras);
-      
-    }
-  }
-  irClases(){
-    if (this.usuariolog != undefined) {
-      let navigationExtras : NavigationExtras ={
-        state:{
-          usuariolog: this.usuariolog
-        }
-      };
-   
-      //para enviar el dato que esta cargado
-      this.router.navigate(['/clases/'],navigationExtras);
-      
-    }
-  }
-
-  irPerfil(){
-    if (this.usuariolog != undefined) {
-      let navigationExtras : NavigationExtras ={
-        state:{
-          usuariolog: this.usuariolog
-        }
-      };
-   
-      //para enviar el dato que esta cargado
-      this.router.navigate(['/perfil/'],navigationExtras);
-      
-    }
-  }
-
-
-
 }
 

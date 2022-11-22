@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Blank
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <form [formGroup]="usuario" (ngSubmit)="agregar()">
+    <ion-card>
+  
+      <ion-input formControlName="id" disabled="true"></ion-input>
+
+      <ion-item>
+        <ion-label position="stacked">Rut</ion-label>
+        <ion-input formControlName="rut" placeholder="Ingrese rut"></ion-input>
+        <ion-note slot="helper">Ingrese rut sin puntos</ion-note>
+        <ion-note slot="error">RUT INCORRECTO</ion-note>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="stacked">Nombre</ion-label>
+        <ion-input formControlName="nombre" placeholder="Ingrese nombre"></ion-input>
+      </ion-item>
+  
+      <ion-button type="submit" [disabled]="!usuario.valid" expand="full">Agregar</ion-button>
+      <ion-button (click)="modificar()" [disabled]="!usuario.valid" expand="full">Modificar</ion-button>
+  
+    </ion-card>
+  </form>
+
+  <ion-list *ngFor="let usuario of usuarios">
+    <ion-item>
+      <ion-label>{{usuario.id}} {{usuario.rut}} {{usuario.nombre}}</ion-label>
+      <ion-button color="warning" fill="outline" (click)="buscar(usuario.id)">BUSCAR</ion-button>
+      <ion-button color="danger" (click)="eliminar(usuario.id)">ELIMINAR</ion-button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

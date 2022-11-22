@@ -17,7 +17,7 @@
       <ion-content>
         <form [formGroup]="clase" (ngSubmit)="registrar2()">
 
-
+          <ion-input formControlName="id" disabled="true"></ion-input>  
           <ion-item>
             <ion-label position="stacked">Codigo</ion-label>
             <ion-input type="number" placeholder="Ingrese Codigo" formControlName="cod"></ion-input>
@@ -105,7 +105,7 @@
       <ion-list color="dark" lines="none" *ngFor="let clase of clases">
         
         <div *ngIf="(usuariolog.rut == clase.profe) || (usuariolog.tipo_usuario== 'Administrador')">
-          
+          <h3>Id Clase: {{clase.id}}</h3>
           <h3>Codigo Clase: {{clase.cod}}</h3>
           <h3>Nombre Clase: {{clase.nom}}</h3>
           <h3>Sigla: {{clase.sigla}}</h3>
@@ -122,8 +122,8 @@
             <div class="prueba" *ngIf="usuariolog.tipo_usuario == 'Administrador'">
 
             <ion-buttons>
-              <ion-button color="warning" (click)="buscar(clase.cod)">Buscar<img class="imagenbot" src="../../../assets/img/icons8-find-user-male-100.png"></ion-button>
-              <ion-button color="danger" (click)="borra(clase.cod)">Eliminar <img class="imagenbot" src="../../../assets/img/icons8-delete-100.png"></ion-button>
+              <ion-button color="warning" (click)="buscar(clase.id)">Buscar<img class="imagenbot" src="../../../assets/img/icons8-find-user-male-100.png"></ion-button>
+              <ion-button color="danger" (click)="borra(clase.id)">Eliminar <img class="imagenbot" src="../../../assets/img/icons8-delete-100.png"></ion-button>
             </ion-buttons>
             </div>
           

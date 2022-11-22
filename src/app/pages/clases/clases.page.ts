@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AlertController, LoadingController, MenuController, ToastController } from '@ionic/angular';
+import { FireService } from 'src/app/services/fireservice.service';
 import { StorageService } from 'src/app/services/storage.service';
 
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -18,7 +19,8 @@ export class ClasesPage implements OnInit {
   //VAMOS A CREAR EL GRUPO DEL FORMULARIO:
   clase = new FormGroup({
     /*  rut : new FormControl('', [Validators.required, Validators.pattern('[0-9]{1,2}.[0-9]{3}.[0-9]{3}-[0-9kK]{1}')]), */
-     cod: new FormControl('',[Validators.required]),
+    id: new FormControl(''),
+    cod: new FormControl('',[Validators.required]),
      nom : new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z ]+$')]),
      sigla : new FormControl('', [Validators.required]),
      semestre: new FormControl('', [Validators.required, Validators.min(1), Validators.max(8)]),
@@ -45,6 +47,7 @@ export class ClasesPage implements OnInit {
               private router:Router,
                private menuCtrl : MenuController,
                private toast :ToastController,
+               private fireService: FireService
                ) {
                  /* this.route.queryParams.subscribe(params => {
         
@@ -68,17 +71,12 @@ export class ClasesPage implements OnInit {
   }
 
   //método del formulario
-
-  prueba(){
-    this.usuariolog=this.usuariolog;
-    console.log(this.usuariolog)
-  }
-
-
-
   async registrar2(){
+
+   this.fireService.agregar('clases', this.clase.value);
+   
     
-    console.log(this.clase.value)
+   /*  console.log(this.clase.value)
      var respuesta: boolean = await this.storage.agregarClase(this.KEY_CLASES, this.clase.value);
 
     if(!respuesta){
@@ -89,21 +87,33 @@ export class ClasesPage implements OnInit {
     if (respuesta) {
       this.tostada('¡Clase Registrada con exito!')
       await this.cargarClases();
-    }
+    }*/
     this.clase.reset();
-    this.toggleMenu();
+    this.toggleMenu(); 
      
   }
   //CARGAR TODAS LAS PERSONAS QUE VIENEN DESDE EL STORAGE:
   async cargarClases(){
-    this.clases = await this.storage.getDatos(this.KEY_CLASES);
+    //this.clases = await this.storage.getDatos(this.KEY_CLASES);
+    this.fireService.getDatos('clases').subscribe(
+      (data:any) => {
+        this.clases = [];
+        for(let c of data){
+          let claseJson = c.payload.doc.data();
+          claseJson['id'] = c.payload.doc.id;
+          this.clases.push(claseJson);
+          //console.log(u.payload.doc.data());
+        }
+      }
+    );
   }
   async cargarPersonas(){
     this.usuarios = await this.storage.getDatos('usuarios');
   }
 
-   async eliminar(cod){
-    await this.storage.eliminarClase(this.KEY_CLASES, cod);
+   async eliminar(id){
+    this.fireService.eliminar('clases', id);
+    //await this.storage.eliminarClase(this.KEY_CLASES, cod);
     await this.cargando('eliminando...');
     await this.cargarClases();
   } 

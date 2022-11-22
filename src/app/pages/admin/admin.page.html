@@ -16,7 +16,7 @@
   <ion-content>
      <form [formGroup]="usuario" (ngSubmit)="registrar2()">
 
-     
+      <ion-input formControlName="id" disabled="true"></ion-input>
     <ion-item>
       <ion-label position="stacked">Email</ion-label>
       <ion-input type="email" placeholder="Ingrese su email" formControlName="email"></ion-input>
@@ -101,13 +101,13 @@
 
    <ion-buttons>
     
-    <ion-button  color="warning" (click)="buscar(usuario.rut)">Buscar<img class="imagenbot" src="../../../assets/img/icons8-find-user-male-100.png"></ion-button>
-    <ion-button color="danger" (click)="borra(usuario.rut)">Eliminar <img class="imagenbot" src="../../../assets/img/icons8-delete-100.png"></ion-button>
+    <ion-button  color="warning" (click)="buscar(usuario.id)">Buscar<img class="imagenbot" src="../../../assets/img/icons8-find-user-male-100.png"></ion-button>
+    <ion-button color="danger" (click)="borra(usuario.id)">Eliminar <img class="imagenbot" src="../../../assets/img/icons8-delete-100.png"></ion-button>
   </ion-buttons>
 
  <!--  </div> -->
   </ion-list>
-    
+
   
   </ion-card>
 

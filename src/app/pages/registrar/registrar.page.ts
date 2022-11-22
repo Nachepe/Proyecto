@@ -6,6 +6,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { ToastController } from '@ionic/angular';
 import { ValidacionesService } from 'src/app/services/validaciones.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { FireService } from 'src/app/services/fireservice.service';
 
 @Component({
   selector: 'app-registrar',
@@ -26,6 +27,7 @@ export class RegistrarPage implements OnInit {
     tipo_usuario: new FormControl('Alumno'),
     email : new FormControl ('',[Validators.compose([Validators.required, Validators.pattern(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@['duocuc'-'profesor.duoc']+(\.cl)$/), Validators.email]),])
   });
+  usuarios: any[] = [];
 
   //VAMOS A CREAR UNA VARIABLE PARA OBTENER LA LISTA DE USUARIOS DEL SERVICIO DE USUARIOS:
   //usuarios: any[] = [];
@@ -35,7 +37,8 @@ export class RegistrarPage implements OnInit {
   constructor(private storage: StorageService,
                  private router: Router,
                 private validaciones:ValidacionesService,
-                private toast :ToastController) { }
+                private toast :ToastController,
+                private fireService : FireService) { }
 
   ngOnInit() {
     //this.usuarios = this.usuarioService.obtenerUsuarios();
@@ -65,22 +68,43 @@ export class RegistrarPage implements OnInit {
     }
 
 
-    console.log(this.usuario.value)
-    var respuesta: boolean = await this.storage.agregar(this.KEY_USUARIOS, this.usuario.value);
+    var enc = this.obtenerUsuario(this.usuario.value.rut)
 
-    if(!respuesta){
-      this.tostada('¡Usuario ya existe!')
+    
+
+    if(enc == undefined){
+      this.fireService.agregar('usuarios',this.usuario.value)
+      this.tostada('¡Usuario Registrado con exito!')
+      await this.cargarUsuarios();
       this.usuario.reset();
       this.verificar_password = '';
-      return
+
+    }else{
+      this.tostada('¡Usuario ya existe!')     
     }
-    if (respuesta) {
-      this.tostada('¡Usuario Registrado con exito!')
-      
-    }
-    this.usuario.reset();
-    this.verificar_password = '';
+
   }
+
+
+  //CARGAR TODAS LAS PERSONAS QUE VIENEN DESDE EL STORAGE:
+  async cargarUsuarios(){
+    /* this.usuarios = await this.storage.getDatos(this.KEY_USUARIOS); */
+    this.fireService.getDatos('usuarios').subscribe(
+      (data:any) => {
+        this.usuarios = [];
+        for(let u of data){
+          let usuarioJson = u.payload.doc.data();
+          usuarioJson['id'] = u.payload.doc.id;
+          this.usuarios.push(usuarioJson);
+          //console.log(u.payload.doc.data());
+        }
+      }
+    );
+  }
+  obtenerUsuario(rut) {
+    return this.usuarios.find(usuario => usuario.rut == rut);
+  }
+
   async tostada(msg:string) {
     const toast = await this.toast.create({
       message: msg,

@@ -66,10 +66,16 @@ const routes: Routes = [
     path: 'asistencia',
     loadChildren: () => import('./pages/asistencia/asistencia.module').then( m => m.AsistenciaPageModule)
   },
+
+  {
+    path: 'pruebafirebase',
+    loadChildren: () => import('./pages/pruebafirebase/pruebafirebase.module').then( m => m.PruebafirebasePageModule)
+  },
   {
     path: '**',
     loadChildren: () => import('./pages/error404/error404.module').then( m => m.Error404PageModule)
   },
+
   
 
 ];
