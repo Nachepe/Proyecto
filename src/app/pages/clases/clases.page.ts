@@ -108,7 +108,18 @@ export class ClasesPage implements OnInit {
     );
   }
   async cargarPersonas(){
-    this.usuarios = await this.storage.getDatos('usuarios');
+    this.fireService.getDatos('usuarios').subscribe(
+      (data:any) => {
+        this.usuarios = [];
+        for(let u of data){
+          let usuarioJson = u.payload.doc.data();
+          usuarioJson['id'] = u.payload.doc.id;
+          this.usuarios.push(usuarioJson);
+          //console.log(u.payload.doc.data());
+        }
+      }
+    );
+    
   }
 
    async eliminar(id){
@@ -119,15 +130,46 @@ export class ClasesPage implements OnInit {
   } 
 
 
-  async buscar(codBuscar){
-    var alumnoEncontrado = await this.storage.getDatoclase(this.KEY_CLASES, codBuscar);
-    this.clase.setValue(alumnoEncontrado);
+  async buscar(id){
+
+    let claseEncontrado = this.fireService.getDato('clases', id);
+    claseEncontrado.subscribe(
+      (response: any) => {
+        //console.log(response.data());
+        let cla = response.data();
+        cla['id'] = response.id;
+        //console.log(usu);
+ 
+        this.clase.setValue( cla );
+      }
+    );
+    
     this.toggleMenu();
   } 
 
    async modificar(){
 
-    await this.storage.actualizar(this.KEY_CLASES, this.clase.value);
+    let id = this.clase.controls.id.value;
+   let claModificado = {
+    cod: this.clase.controls.cod.value,
+    nom : this.clase.controls.nom.value,
+    sigla : this.clase.controls.sigla.value ,
+    semestre: this.clase.controls.semestre.value,
+    profe: this.clase.controls.profe.value,
+    modalidad : this.clase.controls.modalidad.value
+   }
+   this.fireService.modificar('clases', id, claModificado);
+   this.clase.reset();
+   //this.usuario.removeControl('id')
+   //console.log(this.usuario.value)
+   
+  /*  this.fireService.modificar('usuarios', id, usuModificado);
+   this.usuario.reset(); */
+
+
+
+
+    //await this.storage.actualizar(this.KEY_CLASES, this.clase.value);
     await this.cargando('actualizando Clases...');
      await this.cargarClases();
     
