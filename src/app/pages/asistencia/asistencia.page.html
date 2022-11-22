@@ -12,9 +12,9 @@
       
       <ion-input type="text"  [(ngModel)]="tomaqr" placeholder="Ingrese el codigo de su clase "></ion-input>
       
-      <ion-button (click)="marcarAsistencia()" color="duoc">Asistir</ion-button>
+      <ion-button (click)="marcarAsistencia()" *ngIf="isDisabled == true" color="duoc">Asistir</ion-button>
 
-      <ion-button color="duoc" >Escanear Qr</ion-button>
+      <ion-button color="duoc"  *ngIf="isDisabled == true">Escanear Qr</ion-button>
       
     
   </ion-card>

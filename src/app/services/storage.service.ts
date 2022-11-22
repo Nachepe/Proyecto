@@ -135,10 +135,17 @@ export class StorageService {
   getAuth(){
     return this.isAuthenticated.value;
   }
+
+
   logout(){
+    
     this.isAuthenticated.next(false);
     this.router.navigate(['/login']);
+    this.storage.set('usuarios','')
   }
+
+
+
   async actualizar(key, dato) {
     this.datos = await this.storage.get(key) || [];
     console.log(this.datos)

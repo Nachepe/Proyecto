@@ -15,8 +15,15 @@ export class HeaderComponent implements OnInit {
               private route: ActivatedRoute,
               private router:Router,
               private storage:StorageService) {
-    
-  }
+                 this.route.queryParams.subscribe(params => {
+                  if (this.router.getCurrentNavigation().extras.state) {
+                    this.usuariolog= this.router.getCurrentNavigation().extras.state.usuariolog;
+                  
+                  }
+                });    
+                
+            
+              }
 
   ngOnInit() {}
 
@@ -24,6 +31,7 @@ export class HeaderComponent implements OnInit {
     this.menuCtrl.toggle();
   }
   logOut(){
-    this.storage.logout(); 
+    console.log(this.usuariolog);
+     this.storage.logout(); 
   }
 }

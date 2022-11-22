@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MenuController, ToastController } from '@ionic/angular';
 import { NavigationExtras, Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { FireService } from 'src/app/services/fireservice.service';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +11,9 @@ import { StorageService } from 'src/app/services/storage.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+
+
+  usuarios: any[] = [];
 
   //vamos a crear las variables necesarias:
   mail: string;
@@ -19,9 +24,12 @@ export class LoginPage implements OnInit {
   constructor(private toastController: ToastController,
                   private router: Router, 
                   private menuCrl:MenuController,
-                  private storage : StorageService) { }
+                  private storage : StorageService,
+                  private fireService: FireService) { }
 
   async ngOnInit() {
+
+  this.listar();
     var admin = {
       rut: '11111111-1',
       nom: 'Satan',
@@ -52,15 +60,70 @@ export class LoginPage implements OnInit {
       tipo_usuario: 'Alumno',
       email: 'alumno@duoc.cl'
     };
+    var alumno2 ={
+      rut: '18740127-5',
+      nom: 'Nachito',
+      ape: 'Nachio',
+      fecha_nac: '1990-03-24',
+      semestre: 1,
+      password: 'asd123',
+      tipo_usuario: 'Alumno',
+      email: 'nacho@duoc.cl'
+    };
     await this.storage.agregar(this.KEY_USUARIOS, admin);
     await this.storage.agregar(this.KEY_USUARIOS, profe);
     await this.storage.agregar(this.KEY_USUARIOS, alumno);
+    await this.storage.agregar(this.KEY_USUARIOS, alumno2);
+
+    this.listar();
 
   }
 
+  
+ listar(){
+  this.fireService.getDatos('usuarios').subscribe(
+    (data:any) => {
+      this.usuarios = [];
+      for(let u of data){
+        let usuarioJson = u.payload.doc.data();
+        usuarioJson['id'] = u.payload.doc.id;
+        this.usuarios.push(usuarioJson);
+        //console.log(u.payload.doc.data());
+      }
+    }
+  );
+}
+
+
+
+
   //método para ingresar a home:
   async login(){
-    var usuarioLogin: any;
+
+
+
+    var log = this.usuarios.find(usuario => usuario.email == this.mail);
+    if(log != undefined){
+      if(log.password == this.password){
+        let navigationExtras : NavigationExtras ={
+          state:{
+            usuariolog: log
+          }
+        };
+     
+        //para enviar el dato que esta cargado
+        await this.storage.agregar(this.KEY_USUARIOS, log);
+        this.router.navigate(['/tabs/perfil/'+log.rut],navigationExtras);
+        
+      }else{
+        this.tostadaError();
+      }  
+
+      }
+    
+
+   
+    /* var usuarioLogin: any;
   
 
     usuarioLogin = await  this.storage.validarEmailPassword(this.mail, this.password,this.KEY_USUARIOS);  
@@ -80,8 +143,12 @@ export class LoginPage implements OnInit {
       
     }else{
       this.tostadaError();
-    } 
+    }  */
   }
+
+
+
+
   toggleMenu(){
 
     this.menuCrl.toggle();

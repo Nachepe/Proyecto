@@ -18,7 +18,7 @@
                <p placeholder="Apretar boton para generar QR">{{value}}</p> 
             
           </div>
-          <ion-button (click)="prueba()" *ngIf="isDisabled == true" color="duoc">Iniciar Clase</ion-button>
+          <ion-button (click)="prueba()" *ngIf="isDisabled2 == true" color="duoc">Iniciar Clase</ion-button>
           <ion-button color="duoc" *ngIf="isDisabled == false" (click)="generarCodigo()">Generar codigo</ion-button>
           <ion-input type="text" *ngIf="isDisabled == false" [(ngModel)]="xd" placeholder="Codigo de clase"></ion-input>
           
