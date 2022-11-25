@@ -15,7 +15,8 @@ import { ValidacionesService } from 'src/app/services/validaciones.service';
 })
 export class ClasesPage implements OnInit {
 
-  
+  v_agregar: boolean = false;
+
   //VAMOS A CREAR EL GRUPO DEL FORMULARIO:
   clase = new FormGroup({
     /*  rut : new FormControl('', [Validators.required, Validators.pattern('[0-9]{1,2}.[0-9]{3}.[0-9]{3}-[0-9kK]{1}')]), */
@@ -129,6 +130,10 @@ export class ClasesPage implements OnInit {
     await this.cargarClases();
   } 
 
+  agregar2(){
+    this.fireService.agregar('clase',this.clase.value);
+    this.v_agregar = true;
+  }
 
   async buscar(id){
 

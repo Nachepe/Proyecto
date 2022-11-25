@@ -16,6 +16,8 @@ export class QrPage implements OnInit {
   elementType = 'canvas';
   value = '';
 
+  v_agregar: boolean = false;
+
    //VAMOS A CREAR EL GRUPO DEL FORMULARIO:
      asistencia = new FormGroup({
           id : new FormControl(''),
@@ -79,6 +81,11 @@ export class QrPage implements OnInit {
 
   //método para generar un código unico para el codigo QR:
 
+
+  agregar2(){
+    this.fireService.agregar('usuarios',this.asistencia.value);
+    this.v_agregar = true;
+  }
 
   generarCodigo(){
     

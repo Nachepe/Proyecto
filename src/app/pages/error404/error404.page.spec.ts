@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+/* import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { Error404Page } from './error404.page';
@@ -21,4 +21,4 @@ describe('Error404Page', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+}); */

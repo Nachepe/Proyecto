@@ -16,6 +16,8 @@ import { ValidacionesService } from 'src/app/services/validaciones.service';
 })
 export class AdminPage implements OnInit {
 
+  //variable para pruebas unitarias
+  v_agregar: boolean = false;
   
   //VAMOS A CREAR EL GRUPO DEL FORMULARIO:
   usuario = new FormGroup({
@@ -170,13 +172,6 @@ export class AdminPage implements OnInit {
     );
   }
 
-
-
-
-
-
-
-
   async eliminar(id){
     /*METODO DE STORAGE */
     /* await this.storage.eliminar(this.KEY_USUARIOS, rut); */
@@ -224,7 +219,7 @@ export class AdminPage implements OnInit {
       return;
     }
 
-
+    
 
     if (this.usuario.controls.password.value != this.verificar_password) {
       this.tostada('¡Contraseñas no coinciden!')
@@ -250,7 +245,7 @@ export class AdminPage implements OnInit {
 
 
     await this.cargando('actualizando Usuario...');
-     await this.cargarUsuarios();
+    await this.cargarUsuarios();
     
     this.limpiar();
     this.tostada('Usuario modificado correctamente');
@@ -264,6 +259,11 @@ export class AdminPage implements OnInit {
   }
   toggleMenu(){
     this.menuCtrl.toggle('end');
+  }
+
+  agregar2(){
+    this.fireService.agregar('usuarios',this.usuario.value);
+    this.v_agregar = true;
   }
 
   agregar(){

@@ -15,6 +15,8 @@ import { FireService } from 'src/app/services/fireservice.service';
 })
 export class RegistrarPage implements OnInit {
 
+  v_agregar: boolean = false;
+
   //VAMOS A CREAR EL GRUPO DEL FORMULARIO:
   usuario = new FormGroup({
    /*  rut : new FormControl('', [Validators.required, Validators.pattern('[0-9]{1,2}.[0-9]{3}.[0-9]{3}-[0-9kK]{1}')]), */
@@ -85,6 +87,10 @@ export class RegistrarPage implements OnInit {
 
   }
 
+  agregar2(){
+    this.fireService.agregar('usuarios',this.usuario.value);
+    this.v_agregar = true;
+  }
 
   //CARGAR TODAS LAS PERSONAS QUE VIENEN DESDE EL STORAGE:
   async cargarUsuarios(){

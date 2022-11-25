@@ -11,6 +11,9 @@ import { StorageService } from 'src/app/services/storage.service';
   styleUrls: ['./asistencia.page.scss'],
 })
 export class AsistenciaPage implements OnInit {
+
+  v_agregar: boolean = false;
+
 //VAMOS A CREAR EL GRUPO DEL FORMULARIO:
 asistencia = new FormGroup({
   id : new FormControl(''),
@@ -114,6 +117,11 @@ asistencias : any=[];
     } */
    
   
+  }
+
+  agregar2(){
+    this.fireService.agregar('usuarios',this.asistencia.value);
+    this.v_agregar = true;
   }
 
   async tostada(msg:string) {
