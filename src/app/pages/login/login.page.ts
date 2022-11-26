@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
   async ngOnInit() {
 
   this.listar();
-    var admin = {
+    /* var admin = {
       rut: '11111111-1',
       nom: 'Satan',
       ape: 'Lucifer',
@@ -69,13 +69,13 @@ export class LoginPage implements OnInit {
       password: 'asd123',
       tipo_usuario: 'Alumno',
       email: 'nacho@duoc.cl'
-    };
-    await this.storage.agregar(this.KEY_USUARIOS, admin);
+    }; */
+    /* await this.storage.agregar(this.KEY_USUARIOS, admin);
     await this.storage.agregar(this.KEY_USUARIOS, profe);
     await this.storage.agregar(this.KEY_USUARIOS, alumno);
-    await this.storage.agregar(this.KEY_USUARIOS, alumno2);
+    await this.storage.agregar(this.KEY_USUARIOS, alumno2); */
 
-    this.listar();
+   
 
   }
 

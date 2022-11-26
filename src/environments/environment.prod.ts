@@ -8,5 +8,4 @@
   messagingSenderId: "548914678448",
   appId: "1:548914678448:web:bf51d1ded36a1e43730975"
   }
-}; 
- */
+};  */

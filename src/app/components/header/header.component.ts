@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
     this.menuCtrl.toggle();
   }
   logOut(){
-    console.log(this.usuariolog);
+    
      this.storage.logout(); 
   }
 }

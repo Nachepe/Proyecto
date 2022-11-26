@@ -97,7 +97,7 @@ export class QrPage implements OnInit {
       this.xd = this.value;
       this.isDisabled = true;
       this.isDisabled2 = true;
-      console.log(this.isDisabled)
+      
     } 
   }
 

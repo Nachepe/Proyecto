@@ -181,7 +181,7 @@ export class AdminPage implements OnInit {
     /* await this.storage.eliminar(this.KEY_USUARIOS, rut); */
 
 /*METODO DE FIREBASE */
-    console.log(id);
+    
     this.fireService.eliminar('usuarios', id);
 
     await this.cargando('eliminando...');

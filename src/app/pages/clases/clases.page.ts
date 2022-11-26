@@ -64,9 +64,9 @@ export class ClasesPage implements OnInit {
     await this.cargarPersonas(); 
 
     this.rut = this.route.snapshot.paramMap.get('rut');
-    console.log(this.rut);
+   
     this.usuariolog= await this.storage.getDato(this.KEY_USUARIOS,this.rut);
-    console.log(this.usuariolog);
+    
     /* console.log(this.router.getCurrentNavigation().extras.state.usuariolog) */
      /* this.usuariolog= this.router.getCurrentNavigation().extras.state.usuariolog;  */
   }
@@ -267,15 +267,15 @@ export class ClasesPage implements OnInit {
         codclase: codigoClase
       }
 
-      console.log(datosClase);
+     
 
       let prueba = JSON.stringify(datosClase);
 
-      console.log(prueba);
+      
 
       let prueba2 = JSON.parse(prueba);
 
-      console.log(prueba2);
+     
       //para enviar el dato que esta cargado
        //this.router.navigate(['/tabs/qr/'+this.usuariolog.rut],navigationExtras); 
 

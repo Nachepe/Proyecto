@@ -72,7 +72,7 @@ asistencias : any=[];
     var etc = this.obtenerAsis(this.tomaqr);
     if(etc != undefined){
       
-      console.log(etc.alumnos)
+      
 
       var mostrar =etc.alumnos.find(x => x ==this.usuariolog.rut)
       
