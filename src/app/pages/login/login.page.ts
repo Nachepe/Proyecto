@@ -115,11 +115,11 @@ export class LoginPage implements OnInit {
         await this.storage.agregar(this.KEY_USUARIOS, log);
         this.router.navigate(['/tabs/perfil/'+log.rut],navigationExtras);
         
+      }
+
       }else{
         this.tostadaError();
       }  
-
-      }
     
 
    

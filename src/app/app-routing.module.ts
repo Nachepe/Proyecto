@@ -34,10 +34,7 @@ const routes: Routes = [
     /* canActivate: [AuthGuard] */
   },
   
-  {
-    path: 'mantenedor',
-    loadChildren: () => import('./pages/mantenedor/mantenedor.module').then( m => m.MantenedorPageModule)
-  },
+
   {
     path: 'qr',
     loadChildren: () => import('./pages/qr/qr.module').then( m => m.QrPageModule),

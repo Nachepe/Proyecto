@@ -16,6 +16,9 @@ import { FireService } from 'src/app/services/fireservice.service';
 export class RegistrarPage implements OnInit {
 
   v_agregar: boolean = false;
+  standalone = {
+    standalone : true
+  };
 
   //VAMOS A CREAR EL GRUPO DEL FORMULARIO:
   usuario = new FormGroup({

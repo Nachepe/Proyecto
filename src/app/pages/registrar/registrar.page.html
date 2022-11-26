@@ -39,7 +39,7 @@
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Repita Contraseña</ion-label>
-      <ion-input type="password" placeholder="Ingrese nuevamente contraseña" [(ngModel)]="verificar_password" [ngModelOptions]="{standalone: 'true'}"></ion-input>
+      <ion-input type="password" placeholder="Ingrese nuevamente contraseña" [(ngModel)]="verificar_password" [ngModelOptions]="standalone"></ion-input>
     </ion-item>
 
     <ion-chip  class="chipe" color="danger" *ngIf= "usuario.get('rut')?.errors?.['rutnovalido']">El rut no es valido</ion-chip><br>

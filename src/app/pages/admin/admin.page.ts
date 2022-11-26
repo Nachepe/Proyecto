@@ -34,6 +34,10 @@ export class AdminPage implements OnInit {
    });
 
   //VAMOS A CREAR UNA VARIABLE PARA OBTENER LA LISTA DE USUARIOS DEL SERVICIO DE USUARIOS:
+  standalone = {
+    standalone : true
+  };
+
   usuarios: any[] = [];
   verificar_password: string;
   usuariolog: any[]=[];

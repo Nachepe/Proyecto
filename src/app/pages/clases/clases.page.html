@@ -17,7 +17,7 @@
       <ion-content>
         <form [formGroup]="clase" (ngSubmit)="registrar2()">
 
-          <ion-input formControlName="id" disabled="true"></ion-input>  
+          <ion-input formControlName="id" [disabled]="true"></ion-input>  
           <ion-item>
             <ion-label position="stacked">Codigo</ion-label>
             <ion-input type="number" placeholder="Ingrese Codigo" formControlName="cod"></ion-input>

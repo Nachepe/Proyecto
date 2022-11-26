@@ -11,7 +11,7 @@
   <form [formGroup]="usuario" (ngSubmit)="agregar()">
     <ion-card>
   
-      <ion-input formControlName="id" disabled="true"></ion-input>
+      <ion-input formControlName="id" [disabled]="true"></ion-input>
 
       <ion-item>
         <ion-label position="stacked">Rut</ion-label>

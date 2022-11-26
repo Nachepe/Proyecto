@@ -16,7 +16,7 @@
   <ion-content>
      <form [formGroup]="usuario" (ngSubmit)="registrar2()">
 
-      <ion-input formControlName="id" disabled="true"></ion-input>
+      <ion-input formControlName="id" [disabled]="true"></ion-input>
     <ion-item>
       <ion-label position="stacked">Email</ion-label>
       <ion-input type="email" placeholder="Ingrese su email" formControlName="email"></ion-input>
@@ -65,7 +65,7 @@
     <ion-item>
       <ion-label position="stacked">Repita Contraseña</ion-label>
       <ion-input type="password" placeholder="Ingrese nuevamente contraseña" [(ngModel)]="verificar_password"
-        [ngModelOptions]="{standalone: 'true'}"></ion-input>
+        [ngModelOptions]="standalone"></ion-input>
     </ion-item>
     
     <ion-buttons>

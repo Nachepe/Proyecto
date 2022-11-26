@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl,FormGroup,Validators } from '@angular/forms';
 import { ActivatedRoute, NavigationExtras, Route, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { NgxQrcodeElementTypes } from '@techiediaries/ngx-qrcode';
 import { BehaviorSubject } from 'rxjs';
 import { FireService } from 'src/app/services/fireservice.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -13,8 +14,9 @@ import { v4 } from 'uuid';
 })
 export class QrPage implements OnInit {
 
-  elementType = 'canvas';
+  
   value = '';
+  elementType = NgxQrcodeElementTypes.CANVAS;
 
   v_agregar: boolean = false;
 

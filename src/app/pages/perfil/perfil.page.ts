@@ -8,7 +8,7 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 })
 export class PerfilPage implements OnInit {
   usuario: any;
-  usuariolog: any[]=[];
+  usuariolog: any=[];
   rut: string;
 
   constructor(private router: Router,
@@ -28,7 +28,7 @@ export class PerfilPage implements OnInit {
     this.usuariolog= this.router.getCurrentNavigation().extras.state.usuariolog;
   }
 
-  irAdmin(){
+  /* irAdmin(){
     if (this.usuariolog != undefined) {
       let navigationExtras : NavigationExtras ={
         state:{
@@ -81,6 +81,6 @@ export class PerfilPage implements OnInit {
       this.router.navigate(['/qr/'],navigationExtras);
       
     }
-  }
+  } */
 
 }
