@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
-    /* canActivate: [AuthGuard] */
+     canActivate: [AuthGuard] 
   },
   {
     path: '',
@@ -31,7 +31,7 @@ const routes: Routes = [
     path: 'admin',
 
     loadChildren: () => import('./pages/admin/admin.module').then( m => m.AdminPageModule),
-    /* canActivate: [AuthGuard] */
+     /* canActivate: [AuthGuard] */
   },
   
 
@@ -43,7 +43,7 @@ const routes: Routes = [
   {
     path: 'perfil',
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule),
-    /* canActivate: [AuthGuard] */
+     canActivate: [AuthGuard] 
   },
   {
     path: 'clases',
