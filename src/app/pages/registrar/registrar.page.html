@@ -6,6 +6,16 @@
   <ion-card class="login" >
       
   <img class="foto" src="../../../assets/img/icons8-registration-100.png" alt="">
+
+  <ion-list>
+    <ion-item>
+      <ion-select [(ngModel)]="selection" placeholder="Selecciona tipo de usuario"  >
+        <ion-select-option value="Profesor">Profesor</ion-select-option>
+        <ion-select-option value="Alumno">Alumno</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <div *ngIf="selection=='Alumno'">
   <form [formGroup]="usuario" (ngSubmit)="registrar()">
 
     <ion-item>
@@ -14,7 +24,7 @@
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Rut</ion-label>
-      <ion-input maxlength="12" type="text" placeholder="Ingrese rut(con puntos y con guion)" formControlName="rut"></ion-input>
+      <ion-input maxlength="12" type="text" placeholder="Ingrese rut (con puntos y con guion)" formControlName="rut"></ion-input>
       
     </ion-item>
     <ion-item>
@@ -46,6 +56,55 @@
   
     <ion-button color="duoc" type="submit" [disabled]="!usuario.valid">REGISTRAR</ion-button>
   </form>
+</div>
+
+<div *ngIf="selection=='Profesor'">
+  <form [formGroup]="profesor" (ngSubmit)="registrar()">
+
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="email" placeholder="Ingrese su email de profesor" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Rut</ion-label>
+      <ion-input maxlength="12" type="text" placeholder="Ingrese rut(con puntos y con guion)" formControlName="rut"></ion-input>
+      
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+      <ion-input type="text" placeholder="Ingrese nombre" formControlName="nom"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Apellido</ion-label>
+      <ion-input type="text" placeholder="Ingrese apellido" formControlName="ape"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Fecha nacimiento</ion-label>
+      <ion-input type="date" max="2004-09-06" placeholder="Ingrese fecha nacimiento" formControlName="fecha_nac"></ion-input>
+    </ion-item>
+    
+      <ion-list>
+        <ion-item>
+          <ion-select  placeholder="Selecciona La carrera en la que eres profesor" formControlName="carrera" >
+            <ion-select-option value="Inginfo">Ingenieria en informatica</ion-select-option>
+            <ion-select-option value="analista">Analista programador</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    <ion-item>
+      <ion-label position="stacked">Contraseña</ion-label>
+      <ion-input type="password" placeholder="Ingrese contraseña" formControlName="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Repita Contraseña</ion-label>
+      <ion-input type="password" placeholder="Ingrese nuevamente contraseña" [(ngModel)]="verificar_password" [ngModelOptions]="standalone"></ion-input>
+    </ion-item>
+
+    <ion-chip  class="chipe" color="danger" *ngIf= "usuario.get('rut')?.errors?.['rutnovalido']">El rut no es valido</ion-chip><br>
+  
+    <ion-button color="duoc" type="submit" [disabled]="!profesor.valid">REGISTRAR</ion-button>
+  </form>
+</div>
 </ion-card>
   <!-- <h1>LISTA DE USUARIOS</h1>
   <ion-list *ngFor="let usuario of usuarios">

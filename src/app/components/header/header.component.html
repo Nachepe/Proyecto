@@ -6,9 +6,11 @@
 
       <ion-back-button text=""  color="duoc" > </ion-back-button>
     </ion-buttons>
-      
-        <ion-button slot="end" color="duoc" name="power-outline" (click)="logOut()">Cerrar Sesion</ion-button>
+    
+        <ion-button *ngIf="titulo !='Registrar'" slot="end" color="duoc" name="power-outline" (click)="logOut()">Cerrar Sesion</ion-button>
        
+        <ion-button *ngIf="titulo =='Registrar'" slot="end" color="duoc" (click)="logOut()"><ion-icon name="arrow-undo-outline"></ion-icon></ion-button>
+          
         
         
         

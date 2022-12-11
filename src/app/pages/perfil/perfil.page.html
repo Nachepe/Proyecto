@@ -22,9 +22,9 @@
         <ion-list-header color="duoc" > DATOS PERSONALES </ion-list-header>
 
 
-        <div>
 
-        
+
+        <div> 
         <ion-item >
             <p style="color: white;">Nombre: {{usuariolog.nom}}</p>
         </ion-item>
@@ -42,11 +42,10 @@
         </ion-item>
         <hr>
         <ion-item>
-        <p style="color: white;">  Semestre: {{usuariolog.semestre}} </p> 
+        <p *ngIf="usuariolog.tipo_usuario == 'Alumno'" style="color: white;">  Semestre: {{usuariolog.semestre}} </p>
+        <p *ngIf="usuariolog.tipo_usuario == 'Docente'" style="color: white;">  Carrera: {{usuariolog.carrera}} </p>
         </ion-item>
         <hr>
- 
-
       </div>
       </ion-list>
       </ion-card>

@@ -27,12 +27,24 @@ export class RegistrarPage implements OnInit {
     nom : new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]),
     ape : new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]),
     fecha_nac: new FormControl('', Validators.required),
-    semestre: new FormControl('', [Validators.required, Validators.min(1), Validators.max(8)]),
+    semestre: new FormControl('', [Validators.min(1), Validators.max(8)]),
     password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(18)]),
     tipo_usuario: new FormControl('Alumno'),
-    email : new FormControl ('',[Validators.compose([Validators.required, Validators.pattern(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@['duocuc'-'profesor.duoc']+(\.cl)$/), Validators.email]),])
+    email : new FormControl ('',[Validators.compose([Validators.required, Validators.pattern(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@['duocuc']+(\.cl)$/), Validators.email]),])
   });
+  profesor = new FormGroup({
+    /*  rut : new FormControl('', [Validators.required, Validators.pattern('[0-9]{1,2}.[0-9]{3}.[0-9]{3}-[0-9kK]{1}')]), */
+     rut: new FormControl('',[Validators.required,Validators.pattern('[0-9]{1,2}.[0-9]{3}.[0-9]{3}-[0-9kK]')]),
+     nom : new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]),
+     ape : new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z]+$')]),
+     fecha_nac: new FormControl('', Validators.required),
+     carrera: new FormControl('', Validators.required),
+     password: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(18)]),
+     tipo_usuario: new FormControl('Docente'),
+     email : new FormControl ('',[Validators.compose([Validators.required, Validators.pattern(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@['profesor.duoc']+(\.cl)$/), Validators.email]),])
+   });
   usuarios: any[] = [];
+  selection: any;
 
   //VAMOS A CREAR UNA VARIABLE PARA OBTENER LA LISTA DE USUARIOS DEL SERVICIO DE USUARIOS:
   //usuarios: any[] = [];
@@ -53,32 +65,76 @@ export class RegistrarPage implements OnInit {
   
   async registrar(){
 
-    //validacion de rut valido
-    if(!this.validaciones.validarRut(this.usuario.controls.rut.value)){
+    if(this.selection=='Alumno'){
+      //validacion de rut valido
+   if(!this.validaciones.validarRut(this.usuario.controls.rut.value)){
+     alert('rut incorrecto!');
+     return;
+   }
+
+   //validar edad
+   if(!this.validaciones.validarEdadMinima(17,this.usuario.controls.fecha_nac.value)){
+     alert('no cumple la edad minima');
+     return;
+   }
+
+
+
+   if (this.usuario.controls.password.value != this.verificar_password) {
+     this.tostada('¡Contraseñas no coinciden!')
+     return;
+   }
+
+
+   var enc = this.obtenerUsuario(this.usuario.value.rut)
+
+   
+
+   if(enc == undefined){
+     this.fireService.agregar('usuarios',this.usuario.value)
+     this.tostada('¡Usuario Registrado con exito!')
+     await this.cargarUsuarios();
+     this.usuario.reset();
+     this.verificar_password = '';
+
+   }else{
+     this.tostada('¡Usuario ya existe!')     
+   }
+
+
+
+   }
+
+
+
+    if(this.selection=='Profesor'){
+       //validacion de rut valido
+    if(!this.validaciones.validarRut(this.profesor.controls.rut.value)){
+
       alert('rut incorrecto!');
       return;
     }
 
     //validar edad
-    if(!this.validaciones.validarEdadMinima(17,this.usuario.controls.fecha_nac.value)){
+    if(!this.validaciones.validarEdadMinima(17,this.profesor.controls.fecha_nac.value)){
       alert('no cumple la edad minima');
       return;
     }
 
 
 
-    if (this.usuario.controls.password.value != this.verificar_password) {
+    if (this.profesor.controls.password.value != this.verificar_password) {
       this.tostada('¡Contraseñas no coinciden!')
       return;
     }
 
 
-    var enc = this.obtenerUsuario(this.usuario.value.rut)
+    var enc = this.obtenerUsuario(this.profesor.value.rut)
 
     
 
     if(enc == undefined){
-      this.fireService.agregar('usuarios',this.usuario.value)
+      this.fireService.agregar('usuarios',this.profesor.value)
       this.tostada('¡Usuario Registrado con exito!')
       await this.cargarUsuarios();
       this.usuario.reset();
@@ -88,6 +144,11 @@ export class RegistrarPage implements OnInit {
       this.tostada('¡Usuario ya existe!')     
     }
 
+
+
+    }
+
+   
   }
 
   agregar2(){
