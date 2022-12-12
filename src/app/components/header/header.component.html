@@ -7,14 +7,23 @@
       <ion-back-button text=""  color="duoc" > </ion-back-button>
     </ion-buttons>
     
-        <ion-button *ngIf="titulo !='Registrar'" slot="end" color="duoc" name="power-outline" (click)="logOut()">Cerrar Sesion</ion-button>
        
         <ion-button *ngIf="titulo =='Registrar'" slot="end" color="duoc" (click)="logOut()"><ion-icon name="arrow-undo-outline"></ion-icon></ion-button>
-          
         
+       
+        <ion-button *ngIf="titulo =='Recuperar'" slot="end" color="duoc" (click)="logOut()"><ion-icon name="arrow-undo-outline"></ion-icon></ion-button>
         
+
+        <ion-button *ngIf="titulo =='Perfil'" slot="end" color="duoc" (click)="logOut()"><ion-icon name="arrow-undo-outline"></ion-icon></ion-button>
+
+        <ion-button *ngIf="titulo =='Asistencia'" slot="end" color="duoc" (click)="logOut()"><ion-icon name="arrow-undo-outline"></ion-icon></ion-button>
         
-        
+
+        <ion-button *ngIf="titulo =='Admin'" slot="end" color="duoc" (click)="logOut()"><ion-icon name="arrow-undo-outline"></ion-icon></ion-button>
+
+        <ion-button *ngIf="titulo =='Clases'" slot="end" color="duoc" (click)="logOut()"><ion-icon name="arrow-undo-outline"></ion-icon></ion-button>
+
+        <ion-button *ngIf="titulo =='Api'" slot="end" color="duoc" (click)="logOut()"><ion-icon name="arrow-undo-outline"></ion-icon></ion-button>
 
     <ion-title class="text-capitalize">{{titulo}}</ion-title>
 

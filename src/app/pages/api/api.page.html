@@ -1,0 +1,19 @@
+<app-header titulo="Api"></app-header>
+
+<ion-content>
+  
+  <div class="fondo">
+  
+    <ion-row *ngFor="let dig of digi">
+      <ion-card>
+      
+        <ion-item><h3 >Name: {{dig.name}}</h3></ion-item>
+        <ion-item><img src="{{dig.img}}" alt=""></ion-item>
+        <ion-item><h2 >Level: {{dig.level}}</h2></ion-item>
+        
+    </ion-card>
+    </ion-row>
+  
+</div>
+    
+</ion-content>

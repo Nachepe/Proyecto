@@ -12,13 +12,12 @@
 }
 
 .fondo{
-    height: 94vh;
+    min-height: 100vh;
     background: rgb(2,0,36);
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(../../../assets/img/concepcion.jpg);
-    background-size: cover;
+    background: linear-gradient(138deg, rgba(2,0,36,1) 0%, rgba(18,126,131,0.5256477591036415) 35%, rgba(0,212,255,1) 100%);
+    
     text-align: center;
-} 
-
+}
 
 
 
@@ -32,12 +31,10 @@
 }
 ion-card {
     font-family: baloo2 !important;
-    background-color: #1a1a1a;
     border-radius: 25px;
     margin: 0 auto;
     top: 5vh;
-    min-height: 85vh;
-    width: 80vh;
+    width: 70%;
     display: flex;
     flex-direction: column; 
     align-items: center;
@@ -56,7 +53,6 @@ ion-card {
             
         }
     }
-    
 
     ion-item {
         --background: none;
@@ -94,34 +90,25 @@ ion-card {
 
 
 @media (max-width: 400px) {
-
-    ion-content {
-        
-        --offset-bottom: auto!important;
-        --overflow: hidden;
-        overflow: auto;
-        &::-webkit-scrollbar {
-          display: none;
-        }
-      }
     .fondo {
-       /*  max-height: 127vh; */
-        /* background-color: #1a1a1a; */
-        /* height: 50hv; */
+        max-height: 100%;
+        background-color: #1a1a1a;
+        height: 100%;
         
         ion-card {
             width: 100vw;
-            /* height: 115vh; */
+            height: 100%;
         }
     }
     .fotis{
-        width: 90px;
+        width: 150px;
     }
     ion-card {
-
-         min-height: 110vh; 
         font-family: baloo2 !important;
         background-color: #1a1a1a;
+
+        
+    
         border-radius: 0px;
         margin: 0 auto;
         top: 0vh;
@@ -169,7 +156,7 @@ ion-card {
             font-family:baloo2;
         }
         ion-button{
-            margin-top: 0vh;
+            margin-top: 5vh;
             
            font-family: baloo2;
            font-weight: bolder;
@@ -178,20 +165,4 @@ ion-card {
     
         }
     }
-
-    ion-button{
-        font-family: baloo2;
-           
-           font-size: 0px;
-           width: 8vh;
-    }
-
-
-    .listavista{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        background-color: #1a1a1a;
-    }
-
 }

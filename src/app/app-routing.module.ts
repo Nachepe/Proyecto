@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
-     canActivate: [AuthGuard] 
+     canActivate: [AuthGuard]  
   },
   {
     path: '',
@@ -38,7 +38,7 @@ const routes: Routes = [
   {
     path: 'qr',
     loadChildren: () => import('./pages/qr/qr.module').then( m => m.QrPageModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard] 
   },
   {
     path: 'perfil',
@@ -48,7 +48,7 @@ const routes: Routes = [
   {
     path: 'clases',
     loadChildren: () => import('./pages/clases/clases.module').then( m => m.ClasesPageModule),
-    canActivate: [AuthGuard]
+     canActivate: [AuthGuard] 
   },
   {
     path: 'tabs',
@@ -69,9 +69,18 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pruebafirebase/pruebafirebase.module').then( m => m.PruebafirebasePageModule)
   },
   {
+    path: 'detalle',
+    loadChildren: () => import('./pages/detalle/detalle.module').then( m => m.DetallePageModule)
+  },
+  {
+    path: 'api',
+    loadChildren: () => import('./pages/api/api.module').then( m => m.ApiPageModule)
+  },
+  {
     path: '**',
     loadChildren: () => import('./pages/error404/error404.module').then( m => m.Error404PageModule)
   },
+  
 
   
 
