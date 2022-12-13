@@ -69,10 +69,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pruebafirebase/pruebafirebase.module').then( m => m.PruebafirebasePageModule)
   },
   {
-    path: 'detalle',
-    loadChildren: () => import('./pages/detalle/detalle.module').then( m => m.DetallePageModule)
-  },
-  {
     path: 'api',
     loadChildren: () => import('./pages/api/api.module').then( m => m.ApiPageModule)
   },
